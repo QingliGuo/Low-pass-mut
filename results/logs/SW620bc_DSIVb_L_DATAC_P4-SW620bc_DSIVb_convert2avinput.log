@@ -1,0 +1,5 @@
+NOTICE: Finished reading 671632 lines from VCF file
+NOTICE: A total of 671521 locus in VCF file passed QC threshold, representing 579956 SNPs (386560 transitions and 193396 transversions) and 91636 indels/substitutions
+NOTICE: Finished writing 579956 SNP genotypes (386560 transitions and 193396 transversions) and 91636 indels/substitutions for 1 sample
+WARNING: 405 invalid alternative alleles found in input file
+WARNING: 2 invalid reference alleles found in input file

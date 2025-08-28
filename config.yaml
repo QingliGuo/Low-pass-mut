@@ -1,0 +1,13 @@
+samples: "sample_names.txt"
+
+ref: "/data/scratch/DMP/UCEC/GENEVOD/software/DLP/refdata/human/GRCh37-lite.fa"
+bam_dir: "/data/rds/DMP/UCEC/GENEVOD/qguo/Projects/SW620_LT/SW620_DSIVb/dATAC_DLP/bams"
+
+output_dir: "/data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results"
+annovar_db:  "/data/rds/DMP/UCEC/GENEVOD/qguo/Reference/genome/annovar/humandb/"
+
+convert2anno: "scripts/convert2annovar.pl"
+annovar: "scripts/annotate_variation.pl"
+matrix_generator: "scripts/Matrix_generator.py"
+reorder_sbs: "scripts/reorder_SBS.pl"
+channels_csv: "scripts/channels96.csv"

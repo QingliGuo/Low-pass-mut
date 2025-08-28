@@ -1,0 +1,252 @@
+Support for alternative conda frontends has been deprecated in favor of simpler support and code base. This should not cause issues since current conda releases rely on fast solving via libmamba. Ignoring the alternative conda frontend setting (mamba).
+host: node16.alma.hpc.icr
+Building DAG of jobs...
+You are running snakemake in a SLURM job context. This is not recommended, as it may lead to unexpected behavior. Please run Snakemake directly on the login node.
+SLURM run ID: f3234aad-b232-4934-ac36-fb9606ae25a9
+Using shell: /usr/bin/bash
+Provided remote nodes: 2
+Job stats:
+job                       count
+----------------------  -------
+all                           1
+call_mutation                 1
+convert_vcf_to_avinput        1
+filter_1000g                  1
+filter_esp6500                1
+filter_exac03                 1
+filter_gnomad                 1
+filter_kaviar                 1
+matrix_generation             1
+total                         9
+
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Aug 11 15:13:29 2025]
+rule call_mutation:
+    input: /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/SW620_LT/SW620_DSIVb/dATAC_DLP/bams/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb.bam, /data/scratch/DMP/UCEC/GENEVOD/software/DLP/refdata/human/GRCh37-lite.fa
+    output: /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb/Variants_Octopus_v0.5.2/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb.octopus.vcf
+    log: /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/logs/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb_mutation_calling.log
+    jobid: 16
+    reason: Missing output files: /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb/Variants_Octopus_v0.5.2/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb.octopus.vcf
+    wildcards: sample=SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb
+    threads: 4
+    resources: mem_mb=16000, mem_mib=15259, disk_mb=7742, disk_mib=7384, tmpdir=<TBD>, slurm_account=dmptxgaag, cpus=4, slurm_partition=compute, runtime=120, jobname={rule}.%j.out
+Shell command: 
+        mkdir -p /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb/Variants_Octopus_v0.5.2
+
+	# Remove .tmp file if it exists from a previous failed run
+        [ -f /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb/Variants_Octopus_v0.5.2/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb.octopus.vcf.tmp ] && rm -f /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb/Variants_Octopus_v0.5.2/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb.octopus.vcf.tmp
+	
+	octopus -R /data/scratch/DMP/UCEC/GENEVOD/software/DLP/refdata/human/GRCh37-lite.fa -I /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/SW620_LT/SW620_DSIVb/dATAC_DLP/bams/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb.bam --output /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb/Variants_Octopus_v0.5.2/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb.octopus.vcf.tmp > /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/logs/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb_mutation_calling.log 2>&1 && 	mv /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb/Variants_Octopus_v0.5.2/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb.octopus.vcf.tmp /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb/Variants_Octopus_v0.5.2/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb.octopus.vcf
+        
+Job 16 has been submitted with SLURM jobid 19200396 (log: /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/.snakemake/slurm_logs/rule_call_mutation/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb/19200396.log).
+[Mon Aug 11 16:18:30 2025]
+Finished jobid: 16 (Rule: call_mutation)
+1 of 9 steps (11%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Aug 11 16:18:30 2025]
+rule convert_vcf_to_avinput:
+    input: /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb/Variants_Octopus_v0.5.2/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb.octopus.vcf
+    output: /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb/Variants_Octopus_v0.5.2/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb.octopus.vcf.avinput
+    log: /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/logs/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb_convert2avinput.log
+    jobid: 15
+    reason: Missing output files: /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb/Variants_Octopus_v0.5.2/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb.octopus.vcf.avinput; Input files updated by another job: /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb/Variants_Octopus_v0.5.2/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb.octopus.vcf
+    wildcards: sample=SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb
+    threads: 4
+    resources: mem_mb=16000, mem_mib=15259, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, slurm_account=dmptxgaag, cpus=4, slurm_partition=compute, runtime=120, jobname={rule}.%j.out
+Shell command: 
+        scripts/convert2annovar.pl -format vcf4 /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb/Variants_Octopus_v0.5.2/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb.octopus.vcf -includeinfo > /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb/Variants_Octopus_v0.5.2/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb.octopus.vcf.avinput 2> /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/logs/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb_convert2avinput.log
+        
+Job 15 has been submitted with SLURM jobid 19202720 (log: /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/.snakemake/slurm_logs/rule_convert_vcf_to_avinput/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb/19202720.log).
+[Mon Aug 11 16:19:10 2025]
+Finished jobid: 15 (Rule: convert_vcf_to_avinput)
+2 of 9 steps (22%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Aug 11 16:19:10 2025]
+rule filter_1000g:
+    input: /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb/Variants_Octopus_v0.5.2/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb.octopus.vcf.avinput
+    output: /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb/Variants_Octopus_v0.5.2/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb.1.hg19_ALL.sites.2015_08_filtered
+    log: /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/logs/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb_filter_1000g.log
+    jobid: 14
+    reason: Missing output files: /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb/Variants_Octopus_v0.5.2/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb.1.hg19_ALL.sites.2015_08_filtered; Input files updated by another job: /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb/Variants_Octopus_v0.5.2/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb.octopus.vcf.avinput
+    wildcards: sample=SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb
+    threads: 4
+    resources: mem_mb=16000, mem_mib=15259, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, slurm_account=dmptxgaag, cpus=4, slurm_partition=compute, runtime=120, jobname={rule}.%j.out
+Shell command: 
+        set -euo pipefail
+
+        # Get the output prefix from output path
+        outdir=$(dirname /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb/Variants_Octopus_v0.5.2/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb.1.hg19_ALL.sites.2015_08_filtered)
+	outprefix=$outdir/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb.1
+
+        scripts/annotate_variation.pl -filter -dbtype 1000g2015aug_all -buildver hg19             -out $outprefix /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb/Variants_Octopus_v0.5.2/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb.octopus.vcf.avinput /data/rds/DMP/UCEC/GENEVOD/qguo/Reference/genome/annovar/humandb/             -maf 0.001 -thread 5 > /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/logs/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb_filter_1000g.log 2>&1
+        
+Job 14 has been submitted with SLURM jobid 19202724 (log: /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/.snakemake/slurm_logs/rule_filter_1000g/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb/19202724.log).
+[Mon Aug 11 16:20:40 2025]
+Finished jobid: 14 (Rule: filter_1000g)
+3 of 9 steps (33%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Aug 11 16:20:40 2025]
+rule filter_esp6500:
+    input: /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb/Variants_Octopus_v0.5.2/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb.1.hg19_ALL.sites.2015_08_filtered
+    output: /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb/Variants_Octopus_v0.5.2/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb.2.hg19_esp6500siv2_all_filtered
+    log: /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/logs/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb_filter_esp6500.log
+    jobid: 13
+    reason: Missing output files: /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb/Variants_Octopus_v0.5.2/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb.2.hg19_esp6500siv2_all_filtered; Input files updated by another job: /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb/Variants_Octopus_v0.5.2/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb.1.hg19_ALL.sites.2015_08_filtered
+    wildcards: sample=SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb
+    threads: 4
+    resources: mem_mb=16000, mem_mib=15259, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, slurm_account=dmptxgaag, cpus=4, slurm_partition=compute, runtime=120, jobname={rule}.%j.out
+Shell command: 
+	set -euo pipefail
+	outdir=$(dirname /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb/Variants_Octopus_v0.5.2/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb.2.hg19_esp6500siv2_all_filtered)
+        outprefix=$outdir/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb.2
+
+        scripts/annotate_variation.pl -filter -dbtype esp6500siv2_all -buildver hg19         -out $outprefix /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb/Variants_Octopus_v0.5.2/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb.1.hg19_ALL.sites.2015_08_filtered /data/rds/DMP/UCEC/GENEVOD/qguo/Reference/genome/annovar/humandb/ -score_threshold 0.001 -thread 5 > /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/logs/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb_filter_esp6500.log 2>&1
+        
+Job 13 has been submitted with SLURM jobid 19202873 (log: /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/.snakemake/slurm_logs/rule_filter_esp6500/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb/19202873.log).
+[Mon Aug 11 16:21:20 2025]
+Finished jobid: 13 (Rule: filter_esp6500)
+4 of 9 steps (44%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Aug 11 16:21:20 2025]
+rule filter_exac03:
+    input: /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb/Variants_Octopus_v0.5.2/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb.2.hg19_esp6500siv2_all_filtered
+    output: /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb/Variants_Octopus_v0.5.2/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb.3.hg19_exac03nontcga_filtered
+    log: /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/logs/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb_filter_exac03.log
+    jobid: 12
+    reason: Missing output files: /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb/Variants_Octopus_v0.5.2/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb.3.hg19_exac03nontcga_filtered; Input files updated by another job: /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb/Variants_Octopus_v0.5.2/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb.2.hg19_esp6500siv2_all_filtered
+    wildcards: sample=SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb
+    threads: 4
+    resources: mem_mb=16000, mem_mib=15259, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, slurm_account=dmptxgaag, cpus=4, slurm_partition=compute, runtime=120, jobname={rule}.%j.out
+Shell command: 
+	set -euo pipefail
+	outdir=$(dirname /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb/Variants_Octopus_v0.5.2/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb.3.hg19_exac03nontcga_filtered)
+        outprefix=$outdir/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb.3
+        scripts/annotate_variation.pl -filter -dbtype exac03nontcga -buildver hg19         -out $outprefix /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb/Variants_Octopus_v0.5.2/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb.2.hg19_esp6500siv2_all_filtered /data/rds/DMP/UCEC/GENEVOD/qguo/Reference/genome/annovar/humandb/ -score_threshold 0.001 -thread 5 > /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/logs/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb_filter_exac03.log 2>&1
+        
+Job 12 has been submitted with SLURM jobid 19202883 (log: /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/.snakemake/slurm_logs/rule_filter_exac03/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb/19202883.log).
+[Mon Aug 11 16:22:00 2025]
+Finished jobid: 12 (Rule: filter_exac03)
+5 of 9 steps (56%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Aug 11 16:22:00 2025]
+rule filter_gnomad:
+    input: /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb/Variants_Octopus_v0.5.2/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb.3.hg19_exac03nontcga_filtered
+    output: /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb/Variants_Octopus_v0.5.2/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb.4.hg19_gnomad211_genome_filtered
+    log: /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/logs/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb_filter_gnomad.log
+    jobid: 11
+    reason: Missing output files: /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb/Variants_Octopus_v0.5.2/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb.4.hg19_gnomad211_genome_filtered; Input files updated by another job: /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb/Variants_Octopus_v0.5.2/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb.3.hg19_exac03nontcga_filtered
+    wildcards: sample=SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb
+    threads: 4
+    resources: mem_mb=16000, mem_mib=15259, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, slurm_account=dmptxgaag, cpus=4, slurm_partition=compute, runtime=120, jobname={rule}.%j.out
+Shell command: 
+	set -euo pipefail
+	outdir=$(dirname /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb/Variants_Octopus_v0.5.2/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb.4.hg19_gnomad211_genome_filtered)
+        outprefix=$outdir/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb.4
+
+        scripts/annotate_variation.pl -filter -dbtype gnomad211_genome -buildver hg19         -out $outprefix /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb/Variants_Octopus_v0.5.2/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb.3.hg19_exac03nontcga_filtered /data/rds/DMP/UCEC/GENEVOD/qguo/Reference/genome/annovar/humandb/ -score_threshold 0.005 -thread 5 > /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/logs/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb_filter_gnomad.log 2>&1
+        
+Job 11 has been submitted with SLURM jobid 19202889 (log: /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/.snakemake/slurm_logs/rule_filter_gnomad/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb/19202889.log).
+[Mon Aug 11 16:24:31 2025]
+Finished jobid: 11 (Rule: filter_gnomad)
+6 of 9 steps (67%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Aug 11 16:24:31 2025]
+rule filter_kaviar:
+    input: /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb/Variants_Octopus_v0.5.2/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb.4.hg19_gnomad211_genome_filtered
+    output: /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb/Variants_Octopus_v0.5.2/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb.5.hg19_kaviar_20150923_filtered, /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb/Variants_Octopus_v0.5.2/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb.octopus.filtered.vcf
+    log: /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/logs/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb_filter_kaviar.log
+    jobid: 10
+    reason: Missing output files: /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb/Variants_Octopus_v0.5.2/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb.octopus.filtered.vcf; Input files updated by another job: /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb/Variants_Octopus_v0.5.2/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb.4.hg19_gnomad211_genome_filtered
+    wildcards: sample=SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb
+    threads: 4
+    resources: mem_mb=16000, mem_mib=15259, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, slurm_account=dmptxgaag, cpus=4, slurm_partition=compute, runtime=120, jobname={rule}.%j.out
+Shell command: 
+        set -euo pipefail
+        outdir=$(dirname /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb/Variants_Octopus_v0.5.2/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb.5.hg19_kaviar_20150923_filtered)
+        outprefix=$outdir/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb.5
+
+        # Run Annovar filter
+        scripts/annotate_variation.pl -filter -dbtype kaviar_20150923 -buildver hg19             -out $outprefix /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb/Variants_Octopus_v0.5.2/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb.4.hg19_gnomad211_genome_filtered /data/rds/DMP/UCEC/GENEVOD/qguo/Reference/genome/annovar/humandb/             -score_threshold 0.001 -thread 5 > /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/logs/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb_filter_kaviar.log 2>&1
+
+        # Cut columns 6-16 to produce the filtered VCF
+        cut -f 6-16 /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb/Variants_Octopus_v0.5.2/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb.5.hg19_kaviar_20150923_filtered > /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb/Variants_Octopus_v0.5.2/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb.octopus.filtered.vcf
+        
+Job 10 has been submitted with SLURM jobid 19202907 (log: /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/.snakemake/slurm_logs/rule_filter_kaviar/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb/19202907.log).
+[Mon Aug 11 16:27:01 2025]
+Finished jobid: 10 (Rule: filter_kaviar)
+7 of 9 steps (78%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Aug 11 16:27:01 2025]
+rule matrix_generation:
+    input: /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb/Variants_Octopus_v0.5.2/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb.octopus.filtered.vcf, scripts/Matrix_generator.py, scripts/reorder_SBS.pl, scripts/channels96.csv
+    output: /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb/Variants_Octopus_v0.5.2/matrix/output/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb.SBS96.ID83.txt
+    log: /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/logs/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb_matrix_generation.log
+    jobid: 9
+    reason: Missing output files: /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb/Variants_Octopus_v0.5.2/matrix/output/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb.SBS96.ID83.txt; Input files updated by another job: /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb/Variants_Octopus_v0.5.2/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb.octopus.filtered.vcf
+    wildcards: sample=SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb
+    threads: 4
+    resources: mem_mb=16000, mem_mib=15259, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, slurm_account=dmptxgaag, cpus=4, slurm_partition=compute, runtime=120, jobname={rule}.%j.out
+Shell command: 
+        set -euo pipefail
+
+        VARIANT_DIR=$(dirname /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb/Variants_Octopus_v0.5.2/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb.octopus.filtered.vcf)
+        MATRIX_DIR=$VARIANT_DIR/matrix
+
+	rm -rf $MATRIX_DIR
+	mkdir $MATRIX_DIR
+
+        cp $VARIANT_DIR/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb.octopus.filtered.vcf $MATRIX_DIR/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb.octopus.filtered.vcf
+
+        # Matrix generator
+        python scripts/Matrix_generator.py SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb $MATRIX_DIR
+
+        # Cleanup logs, input, and filtered VCF
+        rm -rf $MATRIX_DIR/logs $MATRIX_DIR/input
+        rm -f $MATRIX_DIR/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb.octopus.filtered.vcf
+
+        # Reorder SBS
+        perl scripts/reorder_SBS.pl scripts/channels96.csv $MATRIX_DIR/output/SBS/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb.SBS96.all $MATRIX_DIR/output/SBS/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb.SBS96.all.reordered
+
+        # Combine SBS and INDEL
+        cut -f 2 $MATRIX_DIR/output/SBS/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb.SBS96.all.reordered > $MATRIX_DIR/output/sbs.tmp
+        cat $MATRIX_DIR/output/ID/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb.ID83.all | tail -n 83 | cut -f 2 > $MATRIX_DIR/output/indel.tmp
+        cat $MATRIX_DIR/output/sbs.tmp $MATRIX_DIR/output/indel.tmp > /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb/Variants_Octopus_v0.5.2/matrix/output/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb.SBS96.ID83.txt
+        rm $MATRIX_DIR/output/sbs.tmp $MATRIX_DIR/output/indel.tmp
+
+        rm $VARIANT_DIR/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb.octopus.filtered.vcf
+        
+Job 9 has been submitted with SLURM jobid 19203028 (log: /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/.snakemake/slurm_logs/rule_matrix_generation/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb/19203028.log).
+[Mon Aug 11 16:28:31 2025]
+Finished jobid: 9 (Rule: matrix_generation)
+8 of 9 steps (89%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon Aug 11 16:28:31 2025]
+localrule all:
+    input: /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/SW620bc_DSIVb_L_DATAC_L10-SW620bc_DSIVb/Variants_Octopus_v0.5.2/matrix/output/SW620bc_DSIVb_L_DATAC_L10-SW620bc_DSIVb.SBS96.ID83.txt, /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb/Variants_Octopus_v0.5.2/matrix/output/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb.SBS96.ID83.txt
+    jobid: 0
+    reason: Input files updated by another job: /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb/Variants_Octopus_v0.5.2/matrix/output/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb.SBS96.ID83.txt
+    resources: mem_mb=16000, mem_mib=15259, disk_mb=1000, disk_mib=954, tmpdir=/data/rds/DMP/UCEC/GENEVOD/qguo/Software/tmp, slurm_account=dmptxgaag, cpus=4, slurm_partition=compute, runtime=120, jobname={rule}.%j.out
+Shell command: None
+[Mon Aug 11 16:28:31 2025]
+Finished jobid: 0 (Rule: all)
+9 of 9 steps (100%) done
+Cleaning up log files older than 10 day(s).
+Complete log(s): /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/.snakemake/log/2025-08-11T151317.325470.snakemake.log

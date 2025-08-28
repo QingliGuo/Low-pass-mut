@@ -1,0 +1,10 @@
+name: matrix
+channels:
+  - conda-forge
+dependencies:
+  - python=3.8
+  - pip
+  - perl              # needed if you call the Perl reorder script in this rule
+  - coreutils         # provides cut/tail if not guaranteed by the system
+  - pip:
+      - SigProfilerMatrixGenerator==1.2.25

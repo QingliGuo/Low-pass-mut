@@ -1,0 +1,30 @@
+ANNOVAR Version:
+	$Date: 2018-04-16 00:43:31 -0400 (Mon, 16 Apr 2018) $
+ANNOVAR Information:
+	For questions, comments, documentation, bug reports and program update, please visit http://www.openbioinformatics.org/annovar/
+ANNOVAR Command:
+	scripts/annotate_variation.pl -filter -dbtype 1000g2015aug_all -buildver hg19 -out /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/SW620bc_DSIVb_L_DATAC_L10-SW620bc_DSIVb/Variants_Octopus_v0.5.2/SW620bc_DSIVb_L_DATAC_L10-SW620bc_DSIVb.1 /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/SW620bc_DSIVb_L_DATAC_L10-SW620bc_DSIVb/Variants_Octopus_v0.5.2/SW620bc_DSIVb_L_DATAC_L10-SW620bc_DSIVb.octopus.vcf.avinput /data/rds/DMP/UCEC/GENEVOD/qguo/Reference/genome/annovar/humandb/ -maf 0.001 -thread 5
+ANNOVAR Started:
+	Mon Aug 11 11:09:17 2025
+NOTICE: Variants matching filtering criteria are written to /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/SW620bc_DSIVb_L_DATAC_L10-SW620bc_DSIVb/Variants_Octopus_v0.5.2/SW620bc_DSIVb_L_DATAC_L10-SW620bc_DSIVb.1.hg19_ALL.sites.2015_08_dropped, other variants are written to /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/SW620bc_DSIVb_L_DATAC_L10-SW620bc_DSIVb/Variants_Octopus_v0.5.2/SW620bc_DSIVb_L_DATAC_L10-SW620bc_DSIVb.1.hg19_ALL.sites.2015_08_filtered
+NOTICE: the queryfile contains 684958 lines
+NOTICE: Creating new threads for query line 1 to 136992
+NOTICE: Creating new threads for query line 136993 to 273984
+NOTICE: Creating new threads for query line 273985 to 410976
+NOTICE: Creating new threads for query line 410977 to 547968
+NOTICE: Creating new threads for query line 547969 to 684958
+NOTICE: Processing next batch with 136990 unique variants in 136990 input lines
+NOTICE: Database index loaded. Total number of bins is 2824642 and the number of bins to be scanned is 95035
+NOTICE: Scanning filter database /data/rds/DMP/UCEC/GENEVOD/qguo/Reference/genome/annovar/humandb/hg19_ALL.sites.2015_08.txt...Done
+NOTICE: Processing next batch with 136991 unique variants in 136992 input lines
+NOTICE: Database index loaded. Total number of bins is 2824642 and the number of bins to be scanned is 100111
+NOTICE: Scanning filter database /data/rds/DMP/UCEC/GENEVOD/qguo/Reference/genome/annovar/humandb/hg19_ALL.sites.2015_08.txt...Done
+NOTICE: Processing next batch with 136992 unique variants in 136992 input lines
+NOTICE: Database index loaded. Total number of bins is 2824642 and the number of bins to be scanned is 99623
+NOTICE: Scanning filter database /data/rds/DMP/UCEC/GENEVOD/qguo/Reference/genome/annovar/humandb/hg19_ALL.sites.2015_08.txt...Done
+NOTICE: Processing next batch with 136992 unique variants in 136992 input lines
+NOTICE: Database index loaded. Total number of bins is 2824642 and the number of bins to be scanned is 104776
+NOTICE: Scanning filter database /data/rds/DMP/UCEC/GENEVOD/qguo/Reference/genome/annovar/humandb/hg19_ALL.sites.2015_08.txt...Done
+NOTICE: Processing next batch with 136992 unique variants in 136992 input lines
+NOTICE: Database index loaded. Total number of bins is 2824642 and the number of bins to be scanned is 101559
+NOTICE: Scanning filter database /data/rds/DMP/UCEC/GENEVOD/qguo/Reference/genome/annovar/humandb/hg19_ALL.sites.2015_08.txt...Done

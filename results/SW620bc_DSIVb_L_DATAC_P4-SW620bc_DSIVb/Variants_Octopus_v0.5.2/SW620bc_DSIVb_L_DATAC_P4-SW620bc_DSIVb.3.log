@@ -1,0 +1,30 @@
+ANNOVAR Version:
+	$Date: 2018-04-16 00:43:31 -0400 (Mon, 16 Apr 2018) $
+ANNOVAR Information:
+	For questions, comments, documentation, bug reports and program update, please visit http://www.openbioinformatics.org/annovar/
+ANNOVAR Command:
+	scripts/annotate_variation.pl -filter -dbtype exac03nontcga -buildver hg19 -out /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb/Variants_Octopus_v0.5.2/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb.3 /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb/Variants_Octopus_v0.5.2/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb.2.hg19_esp6500siv2_all_filtered /data/rds/DMP/UCEC/GENEVOD/qguo/Reference/genome/annovar/humandb/ -score_threshold 0.001 -thread 5
+ANNOVAR Started:
+	Mon Aug 11 16:21:18 2025
+NOTICE: Variants matching filtering criteria are written to /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb/Variants_Octopus_v0.5.2/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb.3.hg19_exac03nontcga_dropped, other variants are written to /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb/Variants_Octopus_v0.5.2/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb.3.hg19_exac03nontcga_filtered
+NOTICE: the queryfile contains 171286 lines
+NOTICE: Creating new threads for query line 1 to 34258
+NOTICE: Creating new threads for query line 34259 to 68516
+NOTICE: Creating new threads for query line 68517 to 102774
+NOTICE: Creating new threads for query line 102775 to 137032
+NOTICE: Creating new threads for query line 137033 to 171286
+NOTICE: Processing next batch with 34258 unique variants in 34258 input lines
+NOTICE: Database index loaded. Total number of bins is 745709 and the number of bins to be scanned is 875
+NOTICE: Scanning filter database /data/rds/DMP/UCEC/GENEVOD/qguo/Reference/genome/annovar/humandb/hg19_exac03nontcga.txt...Done
+NOTICE: Processing next batch with 34257 unique variants in 34258 input lines
+NOTICE: Database index loaded. Total number of bins is 745709 and the number of bins to be scanned is 892
+NOTICE: Scanning filter database /data/rds/DMP/UCEC/GENEVOD/qguo/Reference/genome/annovar/humandb/hg19_exac03nontcga.txt...Done
+NOTICE: Processing next batch with 34258 unique variants in 34258 input lines
+NOTICE: Database index loaded. Total number of bins is 745709 and the number of bins to be scanned is 662
+NOTICE: Scanning filter database /data/rds/DMP/UCEC/GENEVOD/qguo/Reference/genome/annovar/humandb/hg19_exac03nontcga.txt...Done
+NOTICE: Processing next batch with 34258 unique variants in 34258 input lines
+NOTICE: Database index loaded. Total number of bins is 745709 and the number of bins to be scanned is 910
+NOTICE: Scanning filter database /data/rds/DMP/UCEC/GENEVOD/qguo/Reference/genome/annovar/humandb/hg19_exac03nontcga.txt...Done
+NOTICE: Processing next batch with 34253 unique variants in 34254 input lines
+NOTICE: Database index loaded. Total number of bins is 745709 and the number of bins to be scanned is 928
+NOTICE: Scanning filter database /data/rds/DMP/UCEC/GENEVOD/qguo/Reference/genome/annovar/humandb/hg19_exac03nontcga.txt...Done

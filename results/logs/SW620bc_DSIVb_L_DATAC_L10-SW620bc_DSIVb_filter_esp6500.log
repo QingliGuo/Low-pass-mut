@@ -1,0 +1,23 @@
+NOTICE: the --dbtype esp6500siv2_all is assumed to be in generic ANNOVAR database format
+NOTICE: Variants matching filtering criteria are written to /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/SW620bc_DSIVb_L_DATAC_L10-SW620bc_DSIVb/Variants_Octopus_v0.5.2/SW620bc_DSIVb_L_DATAC_L10-SW620bc_DSIVb.2.hg19_esp6500siv2_all_dropped, other variants are written to /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/SW620bc_DSIVb_L_DATAC_L10-SW620bc_DSIVb/Variants_Octopus_v0.5.2/SW620bc_DSIVb_L_DATAC_L10-SW620bc_DSIVb.2.hg19_esp6500siv2_all_filtered
+NOTICE: the queryfile contains 174030 lines
+NOTICE: Creating new threads for query line 1 to 34806
+NOTICE: Creating new threads for query line 34807 to 69612
+NOTICE: Creating new threads for query line 69613 to 104418
+NOTICE: Creating new threads for query line 104419 to 139224
+NOTICE: Creating new threads for query line 139225 to 174030
+NOTICE: Processing next batch with 34806 unique variants in 34806 input lines
+NOTICE: Database index loaded. Total number of bins is 594771 and the number of bins to be scanned is 565
+NOTICE: Scanning filter database /data/rds/DMP/UCEC/GENEVOD/qguo/Reference/genome/annovar/humandb/hg19_esp6500siv2_all.txt...Done
+NOTICE: Processing next batch with 34806 unique variants in 34806 input lines
+NOTICE: Database index loaded. Total number of bins is 594771 and the number of bins to be scanned is 607
+NOTICE: Scanning filter database /data/rds/DMP/UCEC/GENEVOD/qguo/Reference/genome/annovar/humandb/hg19_esp6500siv2_all.txt...Done
+NOTICE: Processing next batch with 34806 unique variants in 34806 input lines
+NOTICE: Database index loaded. Total number of bins is 594771 and the number of bins to be scanned is 632
+NOTICE: Scanning filter database /data/rds/DMP/UCEC/GENEVOD/qguo/Reference/genome/annovar/humandb/hg19_esp6500siv2_all.txt...Done
+NOTICE: Processing next batch with 34805 unique variants in 34806 input lines
+NOTICE: Database index loaded. Total number of bins is 594771 and the number of bins to be scanned is 652
+NOTICE: Scanning filter database /data/rds/DMP/UCEC/GENEVOD/qguo/Reference/genome/annovar/humandb/hg19_esp6500siv2_all.txt...Done
+NOTICE: Processing next batch with 34806 unique variants in 34806 input lines
+NOTICE: Database index loaded. Total number of bins is 594771 and the number of bins to be scanned is 442
+NOTICE: Scanning filter database /data/rds/DMP/UCEC/GENEVOD/qguo/Reference/genome/annovar/humandb/hg19_esp6500siv2_all.txt...Done

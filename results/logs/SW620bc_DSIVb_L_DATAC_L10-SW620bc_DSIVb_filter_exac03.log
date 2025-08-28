@@ -1,0 +1,23 @@
+NOTICE: the --dbtype exac03nontcga is assumed to be in generic ANNOVAR database format
+NOTICE: Variants matching filtering criteria are written to /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/SW620bc_DSIVb_L_DATAC_L10-SW620bc_DSIVb/Variants_Octopus_v0.5.2/SW620bc_DSIVb_L_DATAC_L10-SW620bc_DSIVb.3.hg19_exac03nontcga_dropped, other variants are written to /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/SW620bc_DSIVb_L_DATAC_L10-SW620bc_DSIVb/Variants_Octopus_v0.5.2/SW620bc_DSIVb_L_DATAC_L10-SW620bc_DSIVb.3.hg19_exac03nontcga_filtered
+NOTICE: the queryfile contains 173815 lines
+NOTICE: Creating new threads for query line 1 to 34763
+NOTICE: Creating new threads for query line 34764 to 69526
+NOTICE: Creating new threads for query line 69527 to 104289
+NOTICE: Creating new threads for query line 104290 to 139052
+NOTICE: Creating new threads for query line 139053 to 173815
+NOTICE: Processing next batch with 34763 unique variants in 34763 input lines
+NOTICE: Database index loaded. Total number of bins is 745709 and the number of bins to be scanned is 811
+NOTICE: Scanning filter database /data/rds/DMP/UCEC/GENEVOD/qguo/Reference/genome/annovar/humandb/hg19_exac03nontcga.txt...Done
+NOTICE: Processing next batch with 34763 unique variants in 34763 input lines
+NOTICE: Database index loaded. Total number of bins is 745709 and the number of bins to be scanned is 529
+NOTICE: Scanning filter database /data/rds/DMP/UCEC/GENEVOD/qguo/Reference/genome/annovar/humandb/hg19_exac03nontcga.txt...Done
+NOTICE: Processing next batch with 34763 unique variants in 34763 input lines
+NOTICE: Database index loaded. Total number of bins is 745709 and the number of bins to be scanned is 733
+NOTICE: Scanning filter database /data/rds/DMP/UCEC/GENEVOD/qguo/Reference/genome/annovar/humandb/hg19_exac03nontcga.txt...Done
+NOTICE: Processing next batch with 34763 unique variants in 34763 input lines
+NOTICE: Database index loaded. Total number of bins is 745709 and the number of bins to be scanned is 688
+NOTICE: Scanning filter database /data/rds/DMP/UCEC/GENEVOD/qguo/Reference/genome/annovar/humandb/hg19_exac03nontcga.txt...Done
+NOTICE: Processing next batch with 34762 unique variants in 34763 input lines
+NOTICE: Database index loaded. Total number of bins is 745709 and the number of bins to be scanned is 771
+NOTICE: Scanning filter database /data/rds/DMP/UCEC/GENEVOD/qguo/Reference/genome/annovar/humandb/hg19_exac03nontcga.txt...Done

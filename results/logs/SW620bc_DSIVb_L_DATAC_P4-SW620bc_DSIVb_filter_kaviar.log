@@ -1,0 +1,23 @@
+NOTICE: the --dbtype kaviar_20150923 is assumed to be in generic ANNOVAR database format
+NOTICE: Variants matching filtering criteria are written to /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb/Variants_Octopus_v0.5.2/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb.5.hg19_kaviar_20150923_dropped, other variants are written to /data/rds/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v2/results/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb/Variants_Octopus_v0.5.2/SW620bc_DSIVb_L_DATAC_P4-SW620bc_DSIVb.5.hg19_kaviar_20150923_filtered
+NOTICE: the queryfile contains 122570 lines
+NOTICE: Creating new threads for query line 1 to 24514
+NOTICE: Creating new threads for query line 24515 to 49028
+NOTICE: Creating new threads for query line 49029 to 73542
+NOTICE: Creating new threads for query line 73543 to 98056
+NOTICE: Creating new threads for query line 98057 to 122570
+NOTICE: Processing next batch with 24514 unique variants in 24514 input lines
+NOTICE: Database index loaded. Total number of bins is 28259366 and the number of bins to be scanned is 23594
+NOTICE: Scanning filter database /data/rds/DMP/UCEC/GENEVOD/qguo/Reference/genome/annovar/humandb/hg19_kaviar_20150923.txt...Done
+NOTICE: Processing next batch with 24513 unique variants in 24514 input lines
+NOTICE: Database index loaded. Total number of bins is 28259366 and the number of bins to be scanned is 23403
+NOTICE: Scanning filter database /data/rds/DMP/UCEC/GENEVOD/qguo/Reference/genome/annovar/humandb/hg19_kaviar_20150923.txt...Done
+NOTICE: Processing next batch with 24513 unique variants in 24514 input lines
+NOTICE: Database index loaded. Total number of bins is 28259366 and the number of bins to be scanned is 18855
+NOTICE: Scanning filter database /data/rds/DMP/UCEC/GENEVOD/qguo/Reference/genome/annovar/humandb/hg19_kaviar_20150923.txt...Done
+NOTICE: Processing next batch with 24514 unique variants in 24514 input lines
+NOTICE: Database index loaded. Total number of bins is 28259366 and the number of bins to be scanned is 23523
+NOTICE: Scanning filter database /data/rds/DMP/UCEC/GENEVOD/qguo/Reference/genome/annovar/humandb/hg19_kaviar_20150923.txt...Done
+NOTICE: Processing next batch with 24514 unique variants in 24514 input lines
+NOTICE: Database index loaded. Total number of bins is 28259366 and the number of bins to be scanned is 22807
+NOTICE: Scanning filter database /data/rds/DMP/UCEC/GENEVOD/qguo/Reference/genome/annovar/humandb/hg19_kaviar_20150923.txt...Done

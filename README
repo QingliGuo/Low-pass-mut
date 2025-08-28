@@ -1,0 +1,44 @@
+Variant Calling & Filtering Pipeline for low-pass WGS data
+1. Overview
+This Snakemake pipeline performs variant calling using Octopus, followed by multi-step filtering with ANNOVAR against several population databases, and finally generates mutation matrices for downstream analysis.
+
+Its reproducibility is tested on SLURM-based HPC clusters.
+
+By: Qingli Guo 
+Contact: qingli.guo@icr.ac.uk or qingliguo@outlook.com
+License: This work is licensed under the Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0) license (https://creativecommons.org/licenses/by-nc/4.0/)
+
+2. Dependencies:
+1) set up the snakemake environment
+
+```bash
+mamba env create -f envs/snakemake.yaml
+
+2) download and set up ANNOVAR database
+
+This pipeline requires the following ANNOVAR databases (GRCh37/hg19):
+
+- 1000g2015aug
+- esp6500siv2_all
+- exac03nontcga
+- gnomad211_genome
+- kaviar_20150923
+
+**To install:**
+A. Download ANNOVAR from http://annovar.openbioinformatics.org/en/latest/user-guide/download/
+B. Use these commands to download the databases:
+    perl annotate_variation.pl -downdb -webfrom annovar 1000g2015aug humandb/
+    perl annotate_variation.pl -downdb -webfrom annovar esp6500siv2_all humandb/
+    ...
+3. Usage
+1) Prepare configuration file:
+Edit config.yaml to specify:
+a. samples list
+b. bam_dir
+c. ref reference genome path
+d. Paths to annovar databases
+
+2) Submit the pipeline to SLURM
+```
+sbatch run_snakemake.sh
+

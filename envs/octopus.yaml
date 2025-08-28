@@ -1,0 +1,31 @@
+name: oct-env
+channels:
+  - bioconda/label/cf201901
+  - defaults
+  - conda-forge
+dependencies:
+  - _libgcc_mutex=0.1=main
+  - _openmp_mutex=5.1=1_gnu
+  - bzip2=1.0.8=h5eee18b_5
+  - c-ares=1.19.1=h5eee18b_0
+  - ca-certificates=2024.3.11=h06a4308_0
+  - curl=7.88.1=hdbd6064_2
+  - htslib=1.9=hc238db4_4
+  - icu=58.2=he6710b0_3
+  - krb5=1.20.1=h143b758_1
+  - libboost=1.67.0=h46d08c1_4
+  - libcurl=7.88.1=h251f7ec_2
+  - libdeflate=1.0=h470a237_0
+  - libedit=3.1.20230828=h5eee18b_0
+  - libev=4.33=h7f8727e_1
+  - libgcc-ng=11.2.0=h1234567_1
+  - libgomp=11.2.0=h1234567_1
+  - libnghttp2=1.57.0=h2d74bed_0
+  - libssh2=1.10.0=hdbd6064_2
+  - libstdcxx-ng=11.2.0=h1234567_1
+  - ncurses=6.4=h6a678d5_0
+  - octopus=0.5.2b=h14072f9_1
+  - openssl=3.0.13=h7f8727e_0
+  - xz=5.2.10=h5eee18b_1
+  - zlib=1.2.13=h5eee18b_0
+prefix: /home/qguo/.conda/envs/oct-env
