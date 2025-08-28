@@ -1,6 +1,6 @@
 # Variant Calling & Filtering Pipeline for Low-Pass WGS Data
 
-This Snakemake pipeline performs **variant calling using Octopus**, followed by **multi-step filtering with ANNOVAR** against several population databases, and finally generates mutation matrices for downstream analysis.  
+This Snakemake pipeline performs **variant calling using Octopus**, followed by **multi-step filtering with ANNOVAR** against several population databases, and finally generates mutation matrices for downstream analysis, such as [MILO](https://github.com/QingliGuo/MILO).
 It is designed for reproducibility and tested on SLURM-based HPC clusters.
 
 ---
@@ -112,3 +112,10 @@ See: [https://creativecommons.org/licenses/by-nc/4.0/](https://creativecommons.o
 By: **Qingli Guo**  
 Email: qingliguo@outlook.com
 
+## Citation
+
+If you use this pipeline in your research, please cite:
+
+Guo, Q. *et al.*  *Long deletion signatures in repetitive genomic regions track somatic evolution and enable sensitive detection of microsatellite instability.* *bioRxiv* 2024.10.03.616572 (2024) doi [10.1101/2024.10.03.616572](https://doi.org/10.1101/2024.10.03.616572)
+
+[Link to Preprint](https://doi.org/10.1101/2024.10.03.616572)
