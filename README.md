@@ -107,11 +107,6 @@ See: [https://creativecommons.org/licenses/by-nc/4.0/](https://creativecommons.o
 
 ---
 
-## Contact
-
-By: **Qingli Guo**  
-Email: qingliguo@outlook.com
-
 ## Citation
 
 If you use this pipeline in your research, please cite:
@@ -119,3 +114,12 @@ If you use this pipeline in your research, please cite:
 Guo, Q. *et al.*  *Long deletion signatures in repetitive genomic regions track somatic evolution and enable sensitive detection of microsatellite instability.* *bioRxiv* 2024.10.03.616572 (2024) doi [10.1101/2024.10.03.616572](https://doi.org/10.1101/2024.10.03.616572)
 
 [Link to Preprint](https://doi.org/10.1101/2024.10.03.616572)
+
+
+---
+
+## Contact
+
+By: **Qingli Guo**  
+Email: qingliguo@outlook.com
+
