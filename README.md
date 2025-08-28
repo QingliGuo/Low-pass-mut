@@ -85,19 +85,11 @@ The submission script runs Snakemake with the following features:
 ## Output
 
 Results are written to the `output_dir` specified in `config.yaml`. Outputs include:
-- Annotated variant files (from ANNOVAR)
+- Variant Calling files (from Ocotpus)
+- Filetered variant files (from ANNOVAR)
 - Mutation matrices
 - Log files
-
----
-
-## Clean up (optional)
-
-To remove intermediate files and force reruns:
-```bash
-snakemake --delete-all-output
-```
-
+  
 ---
 
 ## License
