@@ -100,14 +100,15 @@ snakemake --delete-all-output
 
 ---
 
-## Contact
-
-By: **Qingli Guo**  
-Email: qingli.guo@icr.ac.uk | qingliguo@outlook.com
-
----
-
 ## License
 
 This work is licensed under the **Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)** license.  
 See: [https://creativecommons.org/licenses/by-nc/4.0/](https://creativecommons.org/licenses/by-nc/4.0/)
+
+---
+
+## Contact
+
+By: **Qingli Guo**  
+Email: qingliguo@outlook.com
+
