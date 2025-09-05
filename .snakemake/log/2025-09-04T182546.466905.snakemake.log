@@ -1,0 +1,50 @@
+None
+host: node01.alma.hpc.icr
+Building DAG of jobs...
+You are running snakemake in a SLURM job context. This is not recommended, as it may lead to unexpected behavior. Please run Snakemake directly on the login node.
+SLURM run ID: cf047a16-88b0-46e9-a7dd-fbb712de3af6
+Using shell: /usr/bin/bash
+Provided remote nodes: 50
+Job stats:
+job                  count
+-----------------  -------
+all                      1
+call_mutation            2
+filter_mutation          2
+matrix_generation        2
+total                    7
+
+Select jobs to execute...
+Execute 2 jobs...
+[Thu Sep  4 18:25:59 2025]
+rule call_mutation:
+    input: /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/data/sample1.bam, /data/scratch/DMP/UCEC/GENEVOD/software/DLP/refdata/human/GRCh37-lite.fa
+    output: /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v7/results/sample1/Variants_Octopus_v0.5.2/sample1.octopus.vcf
+    log: logs/sample1_mutation_calling.log
+    jobid: 3
+    reason: Missing output files: /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v7/results/sample1/Variants_Octopus_v0.5.2/sample1.octopus.vcf
+    wildcards: sample=sample1
+    resources: mem_mb=12000, mem_mib=11445, disk_mb=6017, disk_mib=5739, tmpdir=<TBD>, slurm_account=dmptxgaag, cpus=4, slurm_partition=compute, runtime=240, slurm_output=logs/{rule}.{jobid}.out, slurm_error=logs/{rule}.{jobid}.err
+Shell command: 
+        mkdir -p /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v7/results/sample1/Variants_Octopus_v0.5.2
+        [ -f /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v7/results/sample1/Variants_Octopus_v0.5.2/sample1.octopus.vcf.tmp ] && rm -f /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v7/results/sample1/Variants_Octopus_v0.5.2/sample1.octopus.vcf.tmp
+        octopus -R /data/scratch/DMP/UCEC/GENEVOD/software/DLP/refdata/human/GRCh37-lite.fa -I /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/data/sample1.bam --output /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v7/results/sample1/Variants_Octopus_v0.5.2/sample1.octopus.vcf.tmp > logs/sample1_mutation_calling.log 2>&1 && \
+        mv /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v7/results/sample1/Variants_Octopus_v0.5.2/sample1.octopus.vcf.tmp /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v7/results/sample1/Variants_Octopus_v0.5.2/sample1.octopus.vcf
+        
+Job 3 has been submitted with SLURM jobid 19477801 (log: /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v7/.snakemake/slurm_logs/rule_call_mutation/sample1/19477801.log).
+[Thu Sep  4 18:26:00 2025]
+rule call_mutation:
+    input: /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/data/sample2.bam, /data/scratch/DMP/UCEC/GENEVOD/software/DLP/refdata/human/GRCh37-lite.fa
+    output: /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v7/results/sample2/Variants_Octopus_v0.5.2/sample2.octopus.vcf
+    log: logs/sample2_mutation_calling.log
+    jobid: 6
+    reason: Missing output files: /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v7/results/sample2/Variants_Octopus_v0.5.2/sample2.octopus.vcf
+    wildcards: sample=sample2
+    resources: mem_mb=12000, mem_mib=11445, disk_mb=6017, disk_mib=5739, tmpdir=<TBD>, slurm_account=dmptxgaag, cpus=4, slurm_partition=compute, runtime=240, slurm_output=logs/{rule}.{jobid}.out, slurm_error=logs/{rule}.{jobid}.err
+Shell command: 
+        mkdir -p /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v7/results/sample2/Variants_Octopus_v0.5.2
+        [ -f /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v7/results/sample2/Variants_Octopus_v0.5.2/sample2.octopus.vcf.tmp ] && rm -f /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v7/results/sample2/Variants_Octopus_v0.5.2/sample2.octopus.vcf.tmp
+        octopus -R /data/scratch/DMP/UCEC/GENEVOD/software/DLP/refdata/human/GRCh37-lite.fa -I /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/data/sample2.bam --output /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v7/results/sample2/Variants_Octopus_v0.5.2/sample2.octopus.vcf.tmp > logs/sample2_mutation_calling.log 2>&1 && \
+        mv /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v7/results/sample2/Variants_Octopus_v0.5.2/sample2.octopus.vcf.tmp /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v7/results/sample2/Variants_Octopus_v0.5.2/sample2.octopus.vcf
+        
+Job 6 has been submitted with SLURM jobid 19477802 (log: /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v7/.snakemake/slurm_logs/rule_call_mutation/sample2/19477802.log).

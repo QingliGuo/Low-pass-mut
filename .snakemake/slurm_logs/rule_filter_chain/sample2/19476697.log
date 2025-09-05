@@ -1,0 +1,498 @@
+host: node23.alma.hpc.icr
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided remote nodes: 1
+Select jobs to execute...
+Execute 1 jobs...
+
+[Thu Sep  4 16:48:13 2025]
+rule filter_chain:
+    input: /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/results/sample2/Variants_Octopus_v0.5.2/sample2.octopus.vcf
+    output: /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/results/sample2/Variants_Octopus_v0.5.2/sample2.octopus.filtered.vcf
+    jobid: 0
+    reason: Forced execution
+    wildcards: sample=sample2
+    threads: 4
+    resources: mem_mb=12000, mem_mib=11445, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, slurm_account=dmptxgaag, cpus=4, slurm_partition=compute, runtime=240, slurm_output=logs/{rule}.{jobid}.out, slurm_error=logs/{rule}.{jobid}.err
+Shell command: 
+        set -euo pipefail
+
+        # --- Define temporary file paths as shell variables ---
+        OUTDIR=$(dirname /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/results/sample2/Variants_Octopus_v0.5.2/sample2.octopus.filtered.vcf)
+        
+        AVINPUT=$OUTDIR/sample2.octopus.vcf.avinput
+        F1=$OUTDIR/sample2.1.hg19_ALL.sites.2015_08_filtered
+        F2=$OUTDIR/sample2.2.hg19_esp6500siv2_all_filtered
+        F3=$OUTDIR/sample2.3.hg19_exac03nontcga_filtered
+        F4=$OUTDIR/sample2.4.hg19_gnomad211_genome_filtered
+        F5=$OUTDIR/sample2.5.hg19_kaviar_20150923_filtered
+
+        merge_chunks() {
+            local final="$1"
+            if compgen -G "${final}."* > /dev/null; then
+                printf '%s\n' "${final}."* | sort -V | xargs cat -- > "${final}"
+                rm -f "${final}."*
+            fi
+        }
+
+        # --- Step 0: Convert VCF to AVINPUT ---
+        /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/scripts/convert2annovar.pl -format vcf4 /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/results/sample2/Variants_Octopus_v0.5.2/sample2.octopus.vcf -includeinfo > $AVINPUT 2> 
+
+        # --- Step 1: 1000g ---
+        /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/scripts/annotate_variation.pl -filter -dbtype 1000g2015aug_all -buildver hg19 \
+            -out $OUTDIR/sample2.1 $AVINPUT /data/rds/DMP/UCEC/GENEVOD/qguo/Reference/genome/annovar/humandb/ \
+            -maf 0.001 -thread 4 >>  2>&1
+        merge_chunks $F1
+
+        # --- Step 2: esp6500 ---
+        /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/scripts/annotate_variation.pl -filter -dbtype esp6500siv2_all -buildver hg19 \
+            -out $OUTDIR/sample2.2 $F1 /data/rds/DMP/UCEC/GENEVOD/qguo/Reference/genome/annovar/humandb/ \
+            -score_threshold 0.001 -thread 4 >>  2>&1
+        merge_chunks $F2
+
+        # --- Step 3: exac03 ---
+        /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/scripts/annotate_variation.pl -filter -dbtype exac03nontcga -buildver hg19 \
+            -out $OUTDIR/sample2.3 $F2 /data/rds/DMP/UCEC/GENEVOD/qguo/Reference/genome/annovar/humandb/ \
+            -score_threshold 0.001 -thread 4 >>  2>&1
+        merge_chunks $F3
+
+        # --- Step 4: gnomad ---
+        /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/scripts/annotate_variation.pl -filter -dbtype gnomad211_genome -buildver hg19 \
+            -out $OUTDIR/sample2.4 $F3 /data/rds/DMP/UCEC/GENEVOD/qguo/Reference/genome/annovar/humandb/ \
+            -score_threshold 0.005 -thread 4 >>  2>&1
+        merge_chunks $F4
+
+        # --- Step 5: kaviar ---
+        /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/scripts/annotate_variation.pl -filter -dbtype kaviar_20150923 -buildver hg19 \
+            -out $OUTDIR/sample2.5 $F4 /data/rds/DMP/UCEC/GENEVOD/qguo/Reference/genome/annovar/humandb/ \
+            -score_threshold 0.001 -thread 4 >>  2>&1
+        merge_chunks $F5
+        
+        # --- Final Step: Create VCF ---
+        cut -f 6-16 $F5 > /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/results/sample2/Variants_Octopus_v0.5.2/sample2.octopus.filtered.vcf
+
+        # --- Clean up ---
+        rm -f $OUTDIR/sample2.*_dropped $OUTDIR/sample2.*.log $OUTDIR/sample2.*.invalid_input $OUTDIR/sample2.*_filtered $OUTDIR/sample2.*.avinput
+        
+host: node23.alma.hpc.icr
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 4
+Rules claiming more threads will be scaled down.
+Select jobs to execute...
+Execute 1 jobs...
+
+[Thu Sep  4 16:48:14 2025]
+localrule filter_chain:
+    input: /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/results/sample2/Variants_Octopus_v0.5.2/sample2.octopus.vcf
+    output: /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/results/sample2/Variants_Octopus_v0.5.2/sample2.octopus.filtered.vcf
+    jobid: 0
+    reason: Forced execution
+    wildcards: sample=sample2
+    threads: 4
+    resources: mem_mb=12000, mem_mib=11445, disk_mb=1000, disk_mib=954, tmpdir=/data/scratch/DMP/UCEC/GENEVOD/qguo/Software/cache/.tmp, slurm_account=dmptxgaag, cpus=4, slurm_partition=compute, runtime=240, slurm_output=logs/{rule}.{jobid}.out, slurm_error=logs/{rule}.{jobid}.err
+Shell command: 
+        set -euo pipefail
+
+        # --- Define temporary file paths as shell variables ---
+        OUTDIR=$(dirname /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/results/sample2/Variants_Octopus_v0.5.2/sample2.octopus.filtered.vcf)
+        
+        AVINPUT=$OUTDIR/sample2.octopus.vcf.avinput
+        F1=$OUTDIR/sample2.1.hg19_ALL.sites.2015_08_filtered
+        F2=$OUTDIR/sample2.2.hg19_esp6500siv2_all_filtered
+        F3=$OUTDIR/sample2.3.hg19_exac03nontcga_filtered
+        F4=$OUTDIR/sample2.4.hg19_gnomad211_genome_filtered
+        F5=$OUTDIR/sample2.5.hg19_kaviar_20150923_filtered
+
+        merge_chunks() {
+            local final="$1"
+            if compgen -G "${final}."* > /dev/null; then
+                printf '%s\n' "${final}."* | sort -V | xargs cat -- > "${final}"
+                rm -f "${final}."*
+            fi
+        }
+
+        # --- Step 0: Convert VCF to AVINPUT ---
+        /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/scripts/convert2annovar.pl -format vcf4 /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/results/sample2/Variants_Octopus_v0.5.2/sample2.octopus.vcf -includeinfo > $AVINPUT 2> 
+
+        # --- Step 1: 1000g ---
+        /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/scripts/annotate_variation.pl -filter -dbtype 1000g2015aug_all -buildver hg19 \
+            -out $OUTDIR/sample2.1 $AVINPUT /data/rds/DMP/UCEC/GENEVOD/qguo/Reference/genome/annovar/humandb/ \
+            -maf 0.001 -thread 4 >>  2>&1
+        merge_chunks $F1
+
+        # --- Step 2: esp6500 ---
+        /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/scripts/annotate_variation.pl -filter -dbtype esp6500siv2_all -buildver hg19 \
+            -out $OUTDIR/sample2.2 $F1 /data/rds/DMP/UCEC/GENEVOD/qguo/Reference/genome/annovar/humandb/ \
+            -score_threshold 0.001 -thread 4 >>  2>&1
+        merge_chunks $F2
+
+        # --- Step 3: exac03 ---
+        /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/scripts/annotate_variation.pl -filter -dbtype exac03nontcga -buildver hg19 \
+            -out $OUTDIR/sample2.3 $F2 /data/rds/DMP/UCEC/GENEVOD/qguo/Reference/genome/annovar/humandb/ \
+            -score_threshold 0.001 -thread 4 >>  2>&1
+        merge_chunks $F3
+
+        # --- Step 4: gnomad ---
+        /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/scripts/annotate_variation.pl -filter -dbtype gnomad211_genome -buildver hg19 \
+            -out $OUTDIR/sample2.4 $F3 /data/rds/DMP/UCEC/GENEVOD/qguo/Reference/genome/annovar/humandb/ \
+            -score_threshold 0.005 -thread 4 >>  2>&1
+        merge_chunks $F4
+
+        # --- Step 5: kaviar ---
+        /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/scripts/annotate_variation.pl -filter -dbtype kaviar_20150923 -buildver hg19 \
+            -out $OUTDIR/sample2.5 $F4 /data/rds/DMP/UCEC/GENEVOD/qguo/Reference/genome/annovar/humandb/ \
+            -score_threshold 0.001 -thread 4 >>  2>&1
+        merge_chunks $F5
+        
+        # --- Final Step: Create VCF ---
+        cut -f 6-16 $F5 > /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/results/sample2/Variants_Octopus_v0.5.2/sample2.octopus.filtered.vcf
+
+        # --- Clean up ---
+        rm -f $OUTDIR/sample2.*_dropped $OUTDIR/sample2.*.log $OUTDIR/sample2.*.invalid_input $OUTDIR/sample2.*_filtered $OUTDIR/sample2.*.avinput
+        
+/usr/bin/bash: -c: line 22: syntax error near unexpected token `newline'
+RuleException:
+CalledProcessError in file "/data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/Snakefile", line 47:
+Command 'set -euo pipefail;  
+        set -euo pipefail
+
+        # --- Define temporary file paths as shell variables ---
+        OUTDIR=$(dirname /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/results/sample2/Variants_Octopus_v0.5.2/sample2.octopus.filtered.vcf)
+        
+        AVINPUT=$OUTDIR/sample2.octopus.vcf.avinput
+        F1=$OUTDIR/sample2.1.hg19_ALL.sites.2015_08_filtered
+        F2=$OUTDIR/sample2.2.hg19_esp6500siv2_all_filtered
+        F3=$OUTDIR/sample2.3.hg19_exac03nontcga_filtered
+        F4=$OUTDIR/sample2.4.hg19_gnomad211_genome_filtered
+        F5=$OUTDIR/sample2.5.hg19_kaviar_20150923_filtered
+
+        merge_chunks() {
+            local final="$1"
+            if compgen -G "${final}."* > /dev/null; then
+                printf '%s\n' "${final}."* | sort -V | xargs cat -- > "${final}"
+                rm -f "${final}."*
+            fi
+        }
+
+        # --- Step 0: Convert VCF to AVINPUT ---
+        /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/scripts/convert2annovar.pl -format vcf4 /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/results/sample2/Variants_Octopus_v0.5.2/sample2.octopus.vcf -includeinfo > $AVINPUT 2> 
+
+        # --- Step 1: 1000g ---
+        /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/scripts/annotate_variation.pl -filter -dbtype 1000g2015aug_all -buildver hg19 \
+            -out $OUTDIR/sample2.1 $AVINPUT /data/rds/DMP/UCEC/GENEVOD/qguo/Reference/genome/annovar/humandb/ \
+            -maf 0.001 -thread 4 >>  2>&1
+        merge_chunks $F1
+
+        # --- Step 2: esp6500 ---
+        /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/scripts/annotate_variation.pl -filter -dbtype esp6500siv2_all -buildver hg19 \
+            -out $OUTDIR/sample2.2 $F1 /data/rds/DMP/UCEC/GENEVOD/qguo/Reference/genome/annovar/humandb/ \
+            -score_threshold 0.001 -thread 4 >>  2>&1
+        merge_chunks $F2
+
+        # --- Step 3: exac03 ---
+        /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/scripts/annotate_variation.pl -filter -dbtype exac03nontcga -buildver hg19 \
+            -out $OUTDIR/sample2.3 $F2 /data/rds/DMP/UCEC/GENEVOD/qguo/Reference/genome/annovar/humandb/ \
+            -score_threshold 0.001 -thread 4 >>  2>&1
+        merge_chunks $F3
+
+        # --- Step 4: gnomad ---
+        /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/scripts/annotate_variation.pl -filter -dbtype gnomad211_genome -buildver hg19 \
+            -out $OUTDIR/sample2.4 $F3 /data/rds/DMP/UCEC/GENEVOD/qguo/Reference/genome/annovar/humandb/ \
+            -score_threshold 0.005 -thread 4 >>  2>&1
+        merge_chunks $F4
+
+        # --- Step 5: kaviar ---
+        /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/scripts/annotate_variation.pl -filter -dbtype kaviar_20150923 -buildver hg19 \
+            -out $OUTDIR/sample2.5 $F4 /data/rds/DMP/UCEC/GENEVOD/qguo/Reference/genome/annovar/humandb/ \
+            -score_threshold 0.001 -thread 4 >>  2>&1
+        merge_chunks $F5
+        
+        # --- Final Step: Create VCF ---
+        cut -f 6-16 $F5 > /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/results/sample2/Variants_Octopus_v0.5.2/sample2.octopus.filtered.vcf
+
+        # --- Clean up ---
+        rm -f $OUTDIR/sample2.*_dropped $OUTDIR/sample2.*.log $OUTDIR/sample2.*.invalid_input $OUTDIR/sample2.*_filtered $OUTDIR/sample2.*.avinput' returned non-zero exit status 2.
+[Thu Sep  4 16:48:14 2025]
+Error in rule filter_chain:
+    message: None
+    jobid: 0
+    input: /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/results/sample2/Variants_Octopus_v0.5.2/sample2.octopus.vcf
+    output: /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/results/sample2/Variants_Octopus_v0.5.2/sample2.octopus.filtered.vcf
+    shell:
+        
+        set -euo pipefail
+
+        # --- Define temporary file paths as shell variables ---
+        OUTDIR=$(dirname /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/results/sample2/Variants_Octopus_v0.5.2/sample2.octopus.filtered.vcf)
+        
+        AVINPUT=$OUTDIR/sample2.octopus.vcf.avinput
+        F1=$OUTDIR/sample2.1.hg19_ALL.sites.2015_08_filtered
+        F2=$OUTDIR/sample2.2.hg19_esp6500siv2_all_filtered
+        F3=$OUTDIR/sample2.3.hg19_exac03nontcga_filtered
+        F4=$OUTDIR/sample2.4.hg19_gnomad211_genome_filtered
+        F5=$OUTDIR/sample2.5.hg19_kaviar_20150923_filtered
+
+        merge_chunks() {
+            local final="$1"
+            if compgen -G "${final}."* > /dev/null; then
+                printf '%s\n' "${final}."* | sort -V | xargs cat -- > "${final}"
+                rm -f "${final}."*
+            fi
+        }
+
+        # --- Step 0: Convert VCF to AVINPUT ---
+        /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/scripts/convert2annovar.pl -format vcf4 /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/results/sample2/Variants_Octopus_v0.5.2/sample2.octopus.vcf -includeinfo > $AVINPUT 2> 
+
+        # --- Step 1: 1000g ---
+        /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/scripts/annotate_variation.pl -filter -dbtype 1000g2015aug_all -buildver hg19 \
+            -out $OUTDIR/sample2.1 $AVINPUT /data/rds/DMP/UCEC/GENEVOD/qguo/Reference/genome/annovar/humandb/ \
+            -maf 0.001 -thread 4 >>  2>&1
+        merge_chunks $F1
+
+        # --- Step 2: esp6500 ---
+        /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/scripts/annotate_variation.pl -filter -dbtype esp6500siv2_all -buildver hg19 \
+            -out $OUTDIR/sample2.2 $F1 /data/rds/DMP/UCEC/GENEVOD/qguo/Reference/genome/annovar/humandb/ \
+            -score_threshold 0.001 -thread 4 >>  2>&1
+        merge_chunks $F2
+
+        # --- Step 3: exac03 ---
+        /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/scripts/annotate_variation.pl -filter -dbtype exac03nontcga -buildver hg19 \
+            -out $OUTDIR/sample2.3 $F2 /data/rds/DMP/UCEC/GENEVOD/qguo/Reference/genome/annovar/humandb/ \
+            -score_threshold 0.001 -thread 4 >>  2>&1
+        merge_chunks $F3
+
+        # --- Step 4: gnomad ---
+        /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/scripts/annotate_variation.pl -filter -dbtype gnomad211_genome -buildver hg19 \
+            -out $OUTDIR/sample2.4 $F3 /data/rds/DMP/UCEC/GENEVOD/qguo/Reference/genome/annovar/humandb/ \
+            -score_threshold 0.005 -thread 4 >>  2>&1
+        merge_chunks $F4
+
+        # --- Step 5: kaviar ---
+        /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/scripts/annotate_variation.pl -filter -dbtype kaviar_20150923 -buildver hg19 \
+            -out $OUTDIR/sample2.5 $F4 /data/rds/DMP/UCEC/GENEVOD/qguo/Reference/genome/annovar/humandb/ \
+            -score_threshold 0.001 -thread 4 >>  2>&1
+        merge_chunks $F5
+        
+        # --- Final Step: Create VCF ---
+        cut -f 6-16 $F5 > /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/results/sample2/Variants_Octopus_v0.5.2/sample2.octopus.filtered.vcf
+
+        # --- Clean up ---
+        rm -f $OUTDIR/sample2.*_dropped $OUTDIR/sample2.*.log $OUTDIR/sample2.*.invalid_input $OUTDIR/sample2.*_filtered $OUTDIR/sample2.*.avinput
+        
+        (command exited with non-zero exit code)
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look below for error messages
+[Thu Sep  4 16:48:14 2025]
+Error in rule filter_chain:
+    message: None
+    jobid: 0
+    input: /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/results/sample2/Variants_Octopus_v0.5.2/sample2.octopus.vcf
+    output: /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/results/sample2/Variants_Octopus_v0.5.2/sample2.octopus.filtered.vcf
+    shell:
+        
+        set -euo pipefail
+
+        # --- Define temporary file paths as shell variables ---
+        OUTDIR=$(dirname /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/results/sample2/Variants_Octopus_v0.5.2/sample2.octopus.filtered.vcf)
+        
+        AVINPUT=$OUTDIR/sample2.octopus.vcf.avinput
+        F1=$OUTDIR/sample2.1.hg19_ALL.sites.2015_08_filtered
+        F2=$OUTDIR/sample2.2.hg19_esp6500siv2_all_filtered
+        F3=$OUTDIR/sample2.3.hg19_exac03nontcga_filtered
+        F4=$OUTDIR/sample2.4.hg19_gnomad211_genome_filtered
+        F5=$OUTDIR/sample2.5.hg19_kaviar_20150923_filtered
+
+        merge_chunks() {
+            local final="$1"
+            if compgen -G "${final}."* > /dev/null; then
+                printf '%s\n' "${final}."* | sort -V | xargs cat -- > "${final}"
+                rm -f "${final}."*
+            fi
+        }
+
+        # --- Step 0: Convert VCF to AVINPUT ---
+        /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/scripts/convert2annovar.pl -format vcf4 /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/results/sample2/Variants_Octopus_v0.5.2/sample2.octopus.vcf -includeinfo > $AVINPUT 2> 
+
+        # --- Step 1: 1000g ---
+        /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/scripts/annotate_variation.pl -filter -dbtype 1000g2015aug_all -buildver hg19 \
+            -out $OUTDIR/sample2.1 $AVINPUT /data/rds/DMP/UCEC/GENEVOD/qguo/Reference/genome/annovar/humandb/ \
+            -maf 0.001 -thread 4 >>  2>&1
+        merge_chunks $F1
+
+        # --- Step 2: esp6500 ---
+        /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/scripts/annotate_variation.pl -filter -dbtype esp6500siv2_all -buildver hg19 \
+            -out $OUTDIR/sample2.2 $F1 /data/rds/DMP/UCEC/GENEVOD/qguo/Reference/genome/annovar/humandb/ \
+            -score_threshold 0.001 -thread 4 >>  2>&1
+        merge_chunks $F2
+
+        # --- Step 3: exac03 ---
+        /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/scripts/annotate_variation.pl -filter -dbtype exac03nontcga -buildver hg19 \
+            -out $OUTDIR/sample2.3 $F2 /data/rds/DMP/UCEC/GENEVOD/qguo/Reference/genome/annovar/humandb/ \
+            -score_threshold 0.001 -thread 4 >>  2>&1
+        merge_chunks $F3
+
+        # --- Step 4: gnomad ---
+        /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/scripts/annotate_variation.pl -filter -dbtype gnomad211_genome -buildver hg19 \
+            -out $OUTDIR/sample2.4 $F3 /data/rds/DMP/UCEC/GENEVOD/qguo/Reference/genome/annovar/humandb/ \
+            -score_threshold 0.005 -thread 4 >>  2>&1
+        merge_chunks $F4
+
+        # --- Step 5: kaviar ---
+        /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/scripts/annotate_variation.pl -filter -dbtype kaviar_20150923 -buildver hg19 \
+            -out $OUTDIR/sample2.5 $F4 /data/rds/DMP/UCEC/GENEVOD/qguo/Reference/genome/annovar/humandb/ \
+            -score_threshold 0.001 -thread 4 >>  2>&1
+        merge_chunks $F5
+        
+        # --- Final Step: Create VCF ---
+        cut -f 6-16 $F5 > /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/results/sample2/Variants_Octopus_v0.5.2/sample2.octopus.filtered.vcf
+
+        # --- Clean up ---
+        rm -f $OUTDIR/sample2.*_dropped $OUTDIR/sample2.*.log $OUTDIR/sample2.*.invalid_input $OUTDIR/sample2.*_filtered $OUTDIR/sample2.*.avinput
+        
+        (command exited with non-zero exit code)
+Storing output in storage.
+WorkflowError:
+At least one job did not complete successfully.
+srun: error: node23: task 0: Exited with exit code 1
+[Thu Sep  4 16:48:15 2025]
+Error in rule filter_chain:
+    message: None
+    jobid: 0
+    input: /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/results/sample2/Variants_Octopus_v0.5.2/sample2.octopus.vcf
+    output: /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/results/sample2/Variants_Octopus_v0.5.2/sample2.octopus.filtered.vcf
+    shell:
+        
+        set -euo pipefail
+
+        # --- Define temporary file paths as shell variables ---
+        OUTDIR=$(dirname /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/results/sample2/Variants_Octopus_v0.5.2/sample2.octopus.filtered.vcf)
+        
+        AVINPUT=$OUTDIR/sample2.octopus.vcf.avinput
+        F1=$OUTDIR/sample2.1.hg19_ALL.sites.2015_08_filtered
+        F2=$OUTDIR/sample2.2.hg19_esp6500siv2_all_filtered
+        F3=$OUTDIR/sample2.3.hg19_exac03nontcga_filtered
+        F4=$OUTDIR/sample2.4.hg19_gnomad211_genome_filtered
+        F5=$OUTDIR/sample2.5.hg19_kaviar_20150923_filtered
+
+        merge_chunks() {
+            local final="$1"
+            if compgen -G "${final}."* > /dev/null; then
+                printf '%s\n' "${final}."* | sort -V | xargs cat -- > "${final}"
+                rm -f "${final}."*
+            fi
+        }
+
+        # --- Step 0: Convert VCF to AVINPUT ---
+        /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/scripts/convert2annovar.pl -format vcf4 /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/results/sample2/Variants_Octopus_v0.5.2/sample2.octopus.vcf -includeinfo > $AVINPUT 2> 
+
+        # --- Step 1: 1000g ---
+        /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/scripts/annotate_variation.pl -filter -dbtype 1000g2015aug_all -buildver hg19 \
+            -out $OUTDIR/sample2.1 $AVINPUT /data/rds/DMP/UCEC/GENEVOD/qguo/Reference/genome/annovar/humandb/ \
+            -maf 0.001 -thread 4 >>  2>&1
+        merge_chunks $F1
+
+        # --- Step 2: esp6500 ---
+        /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/scripts/annotate_variation.pl -filter -dbtype esp6500siv2_all -buildver hg19 \
+            -out $OUTDIR/sample2.2 $F1 /data/rds/DMP/UCEC/GENEVOD/qguo/Reference/genome/annovar/humandb/ \
+            -score_threshold 0.001 -thread 4 >>  2>&1
+        merge_chunks $F2
+
+        # --- Step 3: exac03 ---
+        /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/scripts/annotate_variation.pl -filter -dbtype exac03nontcga -buildver hg19 \
+            -out $OUTDIR/sample2.3 $F2 /data/rds/DMP/UCEC/GENEVOD/qguo/Reference/genome/annovar/humandb/ \
+            -score_threshold 0.001 -thread 4 >>  2>&1
+        merge_chunks $F3
+
+        # --- Step 4: gnomad ---
+        /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/scripts/annotate_variation.pl -filter -dbtype gnomad211_genome -buildver hg19 \
+            -out $OUTDIR/sample2.4 $F3 /data/rds/DMP/UCEC/GENEVOD/qguo/Reference/genome/annovar/humandb/ \
+            -score_threshold 0.005 -thread 4 >>  2>&1
+        merge_chunks $F4
+
+        # --- Step 5: kaviar ---
+        /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/scripts/annotate_variation.pl -filter -dbtype kaviar_20150923 -buildver hg19 \
+            -out $OUTDIR/sample2.5 $F4 /data/rds/DMP/UCEC/GENEVOD/qguo/Reference/genome/annovar/humandb/ \
+            -score_threshold 0.001 -thread 4 >>  2>&1
+        merge_chunks $F5
+        
+        # --- Final Step: Create VCF ---
+        cut -f 6-16 $F5 > /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/results/sample2/Variants_Octopus_v0.5.2/sample2.octopus.filtered.vcf
+
+        # --- Clean up ---
+        rm -f $OUTDIR/sample2.*_dropped $OUTDIR/sample2.*.log $OUTDIR/sample2.*.invalid_input $OUTDIR/sample2.*_filtered $OUTDIR/sample2.*.avinput
+        
+        (command exited with non-zero exit code)
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look below for error messages
+[Thu Sep  4 16:48:15 2025]
+Error in rule filter_chain:
+    message: None
+    jobid: 0
+    input: /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/results/sample2/Variants_Octopus_v0.5.2/sample2.octopus.vcf
+    output: /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/results/sample2/Variants_Octopus_v0.5.2/sample2.octopus.filtered.vcf
+    shell:
+        
+        set -euo pipefail
+
+        # --- Define temporary file paths as shell variables ---
+        OUTDIR=$(dirname /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/results/sample2/Variants_Octopus_v0.5.2/sample2.octopus.filtered.vcf)
+        
+        AVINPUT=$OUTDIR/sample2.octopus.vcf.avinput
+        F1=$OUTDIR/sample2.1.hg19_ALL.sites.2015_08_filtered
+        F2=$OUTDIR/sample2.2.hg19_esp6500siv2_all_filtered
+        F3=$OUTDIR/sample2.3.hg19_exac03nontcga_filtered
+        F4=$OUTDIR/sample2.4.hg19_gnomad211_genome_filtered
+        F5=$OUTDIR/sample2.5.hg19_kaviar_20150923_filtered
+
+        merge_chunks() {
+            local final="$1"
+            if compgen -G "${final}."* > /dev/null; then
+                printf '%s\n' "${final}."* | sort -V | xargs cat -- > "${final}"
+                rm -f "${final}."*
+            fi
+        }
+
+        # --- Step 0: Convert VCF to AVINPUT ---
+        /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/scripts/convert2annovar.pl -format vcf4 /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/results/sample2/Variants_Octopus_v0.5.2/sample2.octopus.vcf -includeinfo > $AVINPUT 2> 
+
+        # --- Step 1: 1000g ---
+        /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/scripts/annotate_variation.pl -filter -dbtype 1000g2015aug_all -buildver hg19 \
+            -out $OUTDIR/sample2.1 $AVINPUT /data/rds/DMP/UCEC/GENEVOD/qguo/Reference/genome/annovar/humandb/ \
+            -maf 0.001 -thread 4 >>  2>&1
+        merge_chunks $F1
+
+        # --- Step 2: esp6500 ---
+        /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/scripts/annotate_variation.pl -filter -dbtype esp6500siv2_all -buildver hg19 \
+            -out $OUTDIR/sample2.2 $F1 /data/rds/DMP/UCEC/GENEVOD/qguo/Reference/genome/annovar/humandb/ \
+            -score_threshold 0.001 -thread 4 >>  2>&1
+        merge_chunks $F2
+
+        # --- Step 3: exac03 ---
+        /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/scripts/annotate_variation.pl -filter -dbtype exac03nontcga -buildver hg19 \
+            -out $OUTDIR/sample2.3 $F2 /data/rds/DMP/UCEC/GENEVOD/qguo/Reference/genome/annovar/humandb/ \
+            -score_threshold 0.001 -thread 4 >>  2>&1
+        merge_chunks $F3
+
+        # --- Step 4: gnomad ---
+        /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/scripts/annotate_variation.pl -filter -dbtype gnomad211_genome -buildver hg19 \
+            -out $OUTDIR/sample2.4 $F3 /data/rds/DMP/UCEC/GENEVOD/qguo/Reference/genome/annovar/humandb/ \
+            -score_threshold 0.005 -thread 4 >>  2>&1
+        merge_chunks $F4
+
+        # --- Step 5: kaviar ---
+        /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/scripts/annotate_variation.pl -filter -dbtype kaviar_20150923 -buildver hg19 \
+            -out $OUTDIR/sample2.5 $F4 /data/rds/DMP/UCEC/GENEVOD/qguo/Reference/genome/annovar/humandb/ \
+            -score_threshold 0.001 -thread 4 >>  2>&1
+        merge_chunks $F5
+        
+        # --- Final Step: Create VCF ---
+        cut -f 6-16 $F5 > /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/results/sample2/Variants_Octopus_v0.5.2/sample2.octopus.filtered.vcf
+
+        # --- Clean up ---
+        rm -f $OUTDIR/sample2.*_dropped $OUTDIR/sample2.*.log $OUTDIR/sample2.*.invalid_input $OUTDIR/sample2.*_filtered $OUTDIR/sample2.*.avinput
+        
+        (command exited with non-zero exit code)
+Storing output in storage.
+WorkflowError:
+At least one job did not complete successfully.

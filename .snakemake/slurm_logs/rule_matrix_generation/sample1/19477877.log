@@ -1,0 +1,174 @@
+host: node05.alma.hpc.icr
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided remote nodes: 1
+Select jobs to execute...
+Execute 1 jobs...
+
+[Thu Sep  4 18:39:08 2025]
+rule matrix_generation:
+    input: /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut/results/sample1/Variants_Octopus_v0.5.2/sample1.octopus.filtered.vcf, /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut/scripts/Matrix_generator.py
+    output: /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut/results/sample1/Variants_Octopus_v0.5.2/matrix/output/ID/sample1.ID83.all
+    log: logs/sample1_matrix_generation.log
+    jobid: 0
+    reason: Forced execution
+    wildcards: sample=sample1
+    resources: mem_mb=12000, mem_mib=11445, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, slurm_account=dmptxgaag, cpus=4, slurm_partition=compute, runtime=240, slurm_output=logs/{rule}.{jobid}.out, slurm_error=logs/{rule}.{jobid}.err
+Shell command: 
+        set -euo pipefail
+        VARIANT_DIR=$(dirname /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut/results/sample1/Variants_Octopus_v0.5.2/sample1.octopus.filtered.vcf)
+        MATRIX_DIR=$VARIANT_DIR/matrix
+        
+	    rm -rf $MATRIX_DIR
+        mkdir -p $MATRIX_DIR
+        
+	    cp /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut/results/sample1/Variants_Octopus_v0.5.2/sample1.octopus.filtered.vcf $MATRIX_DIR/sample1.octopus.filtered.vcf
+
+        python /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut/scripts/Matrix_generator.py sample1 $MATRIX_DIR >> logs/sample1_matrix_generation.log 2>&1
+
+        ## clean up
+        rm -rf $MATRIX_DIR/logs $MATRIX_DIR/input
+        rm -f $MATRIX_DIR/sample1.octopus.filtered.vcf
+        rm -rf $MATRIX_DIR/output/vcf_files
+
+        test -s /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut/results/sample1/Variants_Octopus_v0.5.2/matrix/output/ID/sample1.ID83.all
+        
+host: node05.alma.hpc.icr
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Select jobs to execute...
+Execute 1 jobs...
+
+[Thu Sep  4 18:39:12 2025]
+localrule matrix_generation:
+    input: /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut/results/sample1/Variants_Octopus_v0.5.2/sample1.octopus.filtered.vcf, /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut/scripts/Matrix_generator.py
+    output: /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut/results/sample1/Variants_Octopus_v0.5.2/matrix/output/ID/sample1.ID83.all
+    log: logs/sample1_matrix_generation.log
+    jobid: 0
+    reason: Forced execution
+    wildcards: sample=sample1
+    resources: mem_mb=12000, mem_mib=11445, disk_mb=1000, disk_mib=954, tmpdir=/data/scratch/DMP/UCEC/GENEVOD/qguo/Software/cache/.tmp, slurm_account=dmptxgaag, cpus=4, slurm_partition=compute, runtime=240, slurm_output=logs/{rule}.{jobid}.out, slurm_error=logs/{rule}.{jobid}.err
+Shell command: 
+        set -euo pipefail
+        VARIANT_DIR=$(dirname /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut/results/sample1/Variants_Octopus_v0.5.2/sample1.octopus.filtered.vcf)
+        MATRIX_DIR=$VARIANT_DIR/matrix
+        
+	    rm -rf $MATRIX_DIR
+        mkdir -p $MATRIX_DIR
+        
+	    cp /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut/results/sample1/Variants_Octopus_v0.5.2/sample1.octopus.filtered.vcf $MATRIX_DIR/sample1.octopus.filtered.vcf
+
+        python /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut/scripts/Matrix_generator.py sample1 $MATRIX_DIR >> logs/sample1_matrix_generation.log 2>&1
+
+        ## clean up
+        rm -rf $MATRIX_DIR/logs $MATRIX_DIR/input
+        rm -f $MATRIX_DIR/sample1.octopus.filtered.vcf
+        rm -rf $MATRIX_DIR/output/vcf_files
+
+        test -s /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut/results/sample1/Variants_Octopus_v0.5.2/matrix/output/ID/sample1.ID83.all
+        
+Activating conda environment: ../../Software/cache/snakemake_conda_envs/c628f04679752c7354fb7b308532af47_
+WorkflowError in rule matrix_generation in file "/data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut/Snakefile", line 112:
+Output /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut/results/sample1/Variants_Octopus_v0.5.2/matrix/output/ID/sample1.ID83.all has older modification time (2025-09-04 18:39:27.027229) than input /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut/results/sample1/Variants_Octopus_v0.5.2/sample1.octopus.filtered.vcf (2025-09-04 18:39:28.313448). This could indicate a clock skew problem in your network and would trigger a rerun of this job in the next execution and should therefore be fixed on system level. System time: 2025-09-04 18:39:27.287454 (rule matrix_generation, line 226, /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut/Snakefile)
+Removing output files of failed job matrix_generation since they might be corrupted:
+/data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut/results/sample1/Variants_Octopus_v0.5.2/matrix/output/ID/sample1.ID83.all
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look below for error messages
+[Thu Sep  4 18:39:27 2025]
+Error in rule matrix_generation:
+    message: None
+    jobid: 0
+    input: /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut/results/sample1/Variants_Octopus_v0.5.2/sample1.octopus.filtered.vcf, /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut/scripts/Matrix_generator.py
+    output: /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut/results/sample1/Variants_Octopus_v0.5.2/matrix/output/ID/sample1.ID83.all
+    log: logs/sample1_matrix_generation.log (check log file(s) for error details)
+    conda-env: /data/scratch/DMP/UCEC/GENEVOD/qguo/Software/cache/snakemake_conda_envs/c628f04679752c7354fb7b308532af47_
+    shell:
+        
+        set -euo pipefail
+        VARIANT_DIR=$(dirname /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut/results/sample1/Variants_Octopus_v0.5.2/sample1.octopus.filtered.vcf)
+        MATRIX_DIR=$VARIANT_DIR/matrix
+        
+	    rm -rf $MATRIX_DIR
+        mkdir -p $MATRIX_DIR
+        
+	    cp /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut/results/sample1/Variants_Octopus_v0.5.2/sample1.octopus.filtered.vcf $MATRIX_DIR/sample1.octopus.filtered.vcf
+
+        python /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut/scripts/Matrix_generator.py sample1 $MATRIX_DIR >> logs/sample1_matrix_generation.log 2>&1
+
+        ## clean up
+        rm -rf $MATRIX_DIR/logs $MATRIX_DIR/input
+        rm -f $MATRIX_DIR/sample1.octopus.filtered.vcf
+        rm -rf $MATRIX_DIR/output/vcf_files
+
+        test -s /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut/results/sample1/Variants_Octopus_v0.5.2/matrix/output/ID/sample1.ID83.all
+        
+        (command exited with non-zero exit code)
+Storing output in storage.
+WorkflowError:
+At least one job did not complete successfully.
+srun: error: node05: task 0: Exited with exit code 1
+[Thu Sep  4 18:39:27 2025]
+Error in rule matrix_generation:
+    message: None
+    jobid: 0
+    input: /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut/results/sample1/Variants_Octopus_v0.5.2/sample1.octopus.filtered.vcf, /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut/scripts/Matrix_generator.py
+    output: /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut/results/sample1/Variants_Octopus_v0.5.2/matrix/output/ID/sample1.ID83.all
+    log: logs/sample1_matrix_generation.log (check log file(s) for error details)
+    conda-env: /data/scratch/DMP/UCEC/GENEVOD/qguo/Software/cache/snakemake_conda_envs/c628f04679752c7354fb7b308532af47_
+    shell:
+        
+        set -euo pipefail
+        VARIANT_DIR=$(dirname /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut/results/sample1/Variants_Octopus_v0.5.2/sample1.octopus.filtered.vcf)
+        MATRIX_DIR=$VARIANT_DIR/matrix
+        
+	    rm -rf $MATRIX_DIR
+        mkdir -p $MATRIX_DIR
+        
+	    cp /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut/results/sample1/Variants_Octopus_v0.5.2/sample1.octopus.filtered.vcf $MATRIX_DIR/sample1.octopus.filtered.vcf
+
+        python /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut/scripts/Matrix_generator.py sample1 $MATRIX_DIR >> logs/sample1_matrix_generation.log 2>&1
+
+        ## clean up
+        rm -rf $MATRIX_DIR/logs $MATRIX_DIR/input
+        rm -f $MATRIX_DIR/sample1.octopus.filtered.vcf
+        rm -rf $MATRIX_DIR/output/vcf_files
+
+        test -s /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut/results/sample1/Variants_Octopus_v0.5.2/matrix/output/ID/sample1.ID83.all
+        
+        (command exited with non-zero exit code)
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look below for error messages
+[Thu Sep  4 18:39:27 2025]
+Error in rule matrix_generation:
+    message: None
+    jobid: 0
+    input: /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut/results/sample1/Variants_Octopus_v0.5.2/sample1.octopus.filtered.vcf, /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut/scripts/Matrix_generator.py
+    output: /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut/results/sample1/Variants_Octopus_v0.5.2/matrix/output/ID/sample1.ID83.all
+    log: logs/sample1_matrix_generation.log (check log file(s) for error details)
+    conda-env: /data/scratch/DMP/UCEC/GENEVOD/qguo/Software/cache/snakemake_conda_envs/c628f04679752c7354fb7b308532af47_
+    shell:
+        
+        set -euo pipefail
+        VARIANT_DIR=$(dirname /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut/results/sample1/Variants_Octopus_v0.5.2/sample1.octopus.filtered.vcf)
+        MATRIX_DIR=$VARIANT_DIR/matrix
+        
+	    rm -rf $MATRIX_DIR
+        mkdir -p $MATRIX_DIR
+        
+	    cp /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut/results/sample1/Variants_Octopus_v0.5.2/sample1.octopus.filtered.vcf $MATRIX_DIR/sample1.octopus.filtered.vcf
+
+        python /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut/scripts/Matrix_generator.py sample1 $MATRIX_DIR >> logs/sample1_matrix_generation.log 2>&1
+
+        ## clean up
+        rm -rf $MATRIX_DIR/logs $MATRIX_DIR/input
+        rm -f $MATRIX_DIR/sample1.octopus.filtered.vcf
+        rm -rf $MATRIX_DIR/output/vcf_files
+
+        test -s /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut/results/sample1/Variants_Octopus_v0.5.2/matrix/output/ID/sample1.ID83.all
+        
+        (command exited with non-zero exit code)
+Storing output in storage.
+WorkflowError:
+At least one job did not complete successfully.

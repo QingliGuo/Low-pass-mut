@@ -1,0 +1,46 @@
+host: node21.alma.hpc.icr
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided remote nodes: 1
+Select jobs to execute...
+Execute 1 jobs...
+
+[Thu Sep  4 18:26:05 2025]
+rule call_mutation:
+    input: /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/data/sample2.bam, /data/scratch/DMP/UCEC/GENEVOD/software/DLP/refdata/human/GRCh37-lite.fa
+    output: /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v7/results/sample2/Variants_Octopus_v0.5.2/sample2.octopus.vcf
+    log: logs/sample2_mutation_calling.log
+    jobid: 0
+    reason: Forced execution
+    wildcards: sample=sample2
+    resources: mem_mb=12000, mem_mib=11445, disk_mb=6017, disk_mib=5739, tmpdir=<TBD>, slurm_account=dmptxgaag, cpus=4, slurm_partition=compute, runtime=240, slurm_output=logs/{rule}.{jobid}.out, slurm_error=logs/{rule}.{jobid}.err
+Shell command: 
+        mkdir -p /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v7/results/sample2/Variants_Octopus_v0.5.2
+        [ -f /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v7/results/sample2/Variants_Octopus_v0.5.2/sample2.octopus.vcf.tmp ] && rm -f /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v7/results/sample2/Variants_Octopus_v0.5.2/sample2.octopus.vcf.tmp
+        octopus -R /data/scratch/DMP/UCEC/GENEVOD/software/DLP/refdata/human/GRCh37-lite.fa -I /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/data/sample2.bam --output /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v7/results/sample2/Variants_Octopus_v0.5.2/sample2.octopus.vcf.tmp > logs/sample2_mutation_calling.log 2>&1 && \
+        mv /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v7/results/sample2/Variants_Octopus_v0.5.2/sample2.octopus.vcf.tmp /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v7/results/sample2/Variants_Octopus_v0.5.2/sample2.octopus.vcf
+        
+host: node21.alma.hpc.icr
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Select jobs to execute...
+Execute 1 jobs...
+
+[Thu Sep  4 18:26:13 2025]
+localrule call_mutation:
+    input: /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/data/sample2.bam, /data/scratch/DMP/UCEC/GENEVOD/software/DLP/refdata/human/GRCh37-lite.fa
+    output: /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v7/results/sample2/Variants_Octopus_v0.5.2/sample2.octopus.vcf
+    log: logs/sample2_mutation_calling.log
+    jobid: 0
+    reason: Forced execution
+    wildcards: sample=sample2
+    resources: mem_mb=12000, mem_mib=11445, disk_mb=6017, disk_mib=5739, tmpdir=/data/scratch/DMP/UCEC/GENEVOD/qguo/Software/cache/.tmp, slurm_account=dmptxgaag, cpus=4, slurm_partition=compute, runtime=240, slurm_output=logs/{rule}.{jobid}.out, slurm_error=logs/{rule}.{jobid}.err
+Shell command: 
+        mkdir -p /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v7/results/sample2/Variants_Octopus_v0.5.2
+        [ -f /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v7/results/sample2/Variants_Octopus_v0.5.2/sample2.octopus.vcf.tmp ] && rm -f /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v7/results/sample2/Variants_Octopus_v0.5.2/sample2.octopus.vcf.tmp
+        octopus -R /data/scratch/DMP/UCEC/GENEVOD/software/DLP/refdata/human/GRCh37-lite.fa -I /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v6/data/sample2.bam --output /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v7/results/sample2/Variants_Octopus_v0.5.2/sample2.octopus.vcf.tmp > logs/sample2_mutation_calling.log 2>&1 && \
+        mv /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v7/results/sample2/Variants_Octopus_v0.5.2/sample2.octopus.vcf.tmp /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut_v7/results/sample2/Variants_Octopus_v0.5.2/sample2.octopus.vcf
+        
+Activating conda environment: ../../Software/cache/snakemake_conda_envs/4e59bfef90e54cebcfe66b5e48613cdd_

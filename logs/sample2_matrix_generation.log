@@ -1,0 +1,3 @@
+Starting matrix generation for SNVs and DINUCs...Completed! Elapsed time: 1.34 seconds.
+Starting matrix generation for INDELs...Completed! Elapsed time: 1.23 seconds.
+Matrices generated for 1 samples with 0 errors. Total of 94 SNVs, 1 DINUCs, and 20 INDELs were successfully analyzed.

@@ -1,0 +1,17 @@
+name: oct-env
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+channel_priority: strict
+dependencies:
+  - octopus=0.5.2b
+  - htslib=1.9
+  - curl<8
+  - libdeflate
+  - zlib
+  - bzip2
+  - xz
+  - ncurses
+  - openssl
+

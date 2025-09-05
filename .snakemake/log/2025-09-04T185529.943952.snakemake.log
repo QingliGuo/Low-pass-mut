@@ -1,0 +1,62 @@
+None
+host: node01.alma.hpc.icr
+Building DAG of jobs...
+You are running snakemake in a SLURM job context. This is not recommended, as it may lead to unexpected behavior. Please run Snakemake directly on the login node.
+SLURM run ID: fa7d8210-6845-4d06-a71c-6b8da92a4c5c
+Using shell: /usr/bin/bash
+Provided remote nodes: 50
+Job stats:
+job                  count
+-----------------  -------
+all                      1
+matrix_generation        1
+total                    2
+
+Select jobs to execute...
+Execute 1 jobs...
+[Thu Sep  4 18:55:42 2025]
+rule matrix_generation:
+    input: /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut/results/sample1/Variants_Octopus_v0.5.2/sample1.octopus.filtered.vcf, /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut/scripts/Matrix_generator.py
+    output: /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut/results/sample1/Variants_Octopus_v0.5.2/matrix/output/ID/sample1.ID83.all
+    log: logs/sample1_matrix_generation.log
+    jobid: 1
+    reason: Missing output files: /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut/results/sample1/Variants_Octopus_v0.5.2/matrix/output/ID/sample1.ID83.all
+    wildcards: sample=sample1
+    resources: mem_mb=12000, mem_mib=11445, disk_mb=1000, disk_mib=954, tmpdir=<TBD>, slurm_account=dmptxgaag, cpus=4, slurm_partition=compute, runtime=240, slurm_output=logs/{rule}.{jobid}.out, slurm_error=logs/{rule}.{jobid}.err
+Shell command: 
+        set -euo pipefail
+        VARIANT_DIR=$(dirname /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut/results/sample1/Variants_Octopus_v0.5.2/sample1.octopus.filtered.vcf)
+        MATRIX_DIR=$VARIANT_DIR/matrix
+        
+	    rm -rf $MATRIX_DIR
+        mkdir -p $MATRIX_DIR
+        
+	    cp /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut/results/sample1/Variants_Octopus_v0.5.2/sample1.octopus.filtered.vcf $MATRIX_DIR/sample1.octopus.filtered.vcf
+
+        python /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut/scripts/Matrix_generator.py sample1 $MATRIX_DIR >> logs/sample1_matrix_generation.log 2>&1
+
+        ## clean up
+        rm -rf $MATRIX_DIR/logs $MATRIX_DIR/input
+        rm -f $MATRIX_DIR/sample1.octopus.filtered.vcf
+        rm -rf $MATRIX_DIR/output/vcf_files
+
+        test -s /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut/results/sample1/Variants_Octopus_v0.5.2/matrix/output/ID/sample1.ID83.all
+        
+Job 1 has been submitted with SLURM jobid 19477962 (log: /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut/.snakemake/slurm_logs/rule_matrix_generation/sample1/19477962.log).
+[Thu Sep  4 18:57:07 2025]
+Finished jobid: 1 (Rule: matrix_generation)
+1 of 2 steps (50%) done
+Select jobs to execute...
+Execute 1 jobs...
+[Thu Sep  4 18:57:07 2025]
+localrule all:
+    input: /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut/results/sample1/Variants_Octopus_v0.5.2/matrix/output/ID/sample1.ID83.all, /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut/results/sample2/Variants_Octopus_v0.5.2/matrix/output/ID/sample2.ID83.all
+    jobid: 0
+    reason: Input files updated by another job: /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut/results/sample1/Variants_Octopus_v0.5.2/matrix/output/ID/sample1.ID83.all
+    resources: mem_mb=12000, mem_mib=11445, disk_mb=1000, disk_mib=954, tmpdir=/data/scratch/DMP/UCEC/GENEVOD/qguo/Software/cache/.tmp, slurm_account=dmptxgaag, cpus=4, slurm_partition=compute, runtime=240, slurm_output=logs/{rule}.{jobid}.out, slurm_error=logs/{rule}.{jobid}.err
+Shell command: None
+[Thu Sep  4 18:57:07 2025]
+Finished jobid: 0 (Rule: all)
+2 of 2 steps (100%) done
+Cleaning up log files older than 10 day(s).
+Complete log(s): /data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut/.snakemake/log/2025-09-04T185529.943952.snakemake.log
