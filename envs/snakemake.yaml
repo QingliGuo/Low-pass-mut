@@ -1,4 +1,3 @@
-name: /data/rds/DMP/UCEC/GENEVOD/qguo/Software/.conda/envs/snakemake_new
 channels:
   - bioconda
   - conda-forge
@@ -181,4 +180,3 @@ dependencies:
   - yte=1.8.1
   - zstandard=0.23.0
   - zstd=1.5.7
-prefix: /data/rds/DMP/UCEC/GENEVOD/qguo/Software/.conda/envs/snakemake_new
