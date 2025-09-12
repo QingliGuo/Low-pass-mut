@@ -55,6 +55,13 @@ perl annotate_variation.pl -downdb -buildver hg19 -webfrom annovar gnomad211_gen
 perl annotate_variation.pl -downdb -buildver hg19 -webfrom annovar kaviar_20150923 humandb/
 ```
 
+### 3. Matrix environment
+To run the [SigProfilerMatrixGenerator](https://github.com/AlexandrovLab/SigProfilerMatrixGenerator), you need to install the reference genome in Python within the matrix environment.
+
+```bash
+from SigProfilerMatrixGenerator import install as genInstall
+genInstall.install('GRCh37', rsync=False, bash=True)
+```
 ---
 
 ## Usage
