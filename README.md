@@ -32,7 +32,7 @@ Clone or download this git repository and ensure your folder structure is as fol
 ### 1. Snakemake environment
 Create the Snakemake environment with mamba:
 ```bash
-mamba env create -f envs/snakemake.yaml
+mamba env create -f envs/snakemake.yaml --channel-priority flexible
 ```
 
 ### 2. ANNOVAR setup
