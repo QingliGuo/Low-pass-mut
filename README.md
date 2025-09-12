@@ -1,6 +1,6 @@
 # Variant Calling & Filtering Pipeline for Low-Pass WGS Data
 
-This Snakemake pipeline performs **variant calling using [Octopus](https://luntergroup.github.io/octopus/)**, followed by **multi-step filtering with [ANNOVAR](https://annovar.openbioinformatics.org/en/latest/)** against several population databases, and finally generates mutation matrices for downstream analysis, such as our MSI prediction tool **[MILO](https://github.com/QingliGuo/MILO)**. This pipeline is designed for low-pass DNA sequencing data and tested on SLURM-based HPC clusters.
+This Snakemake pipeline performs **variant calling using [Octopus](https://luntergroup.github.io/octopus/)** from BAM files, followed by **multi-step filtering with [ANNOVAR](https://annovar.openbioinformatics.org/en/latest/)** against several population databases, and finally generates mutation matrices for downstream analysis, such as our MSI prediction tool **[MILO](https://github.com/QingliGuo/MILO)**. This pipeline is designed for low-pass DNA sequencing data (GRCh37/hg19) and tested on SLURM-based HPC clusters.
 
 ---
 
