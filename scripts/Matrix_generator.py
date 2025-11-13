@@ -3,4 +3,4 @@ import sys
 
 sample=sys.argv[1]
 path=sys.argv[2]
-matrices = matGen.SigProfilerMatrixGeneratorFunc(sample, "GRCh37", path, exome=False, bed_file=None, chrom_based=False, tsb_stat=False)
+matrices = matGen.SigProfilerMatrixGeneratorFunc(sample, "GRCh38", path, exome=False, bed_file=None, chrom_based=False, tsb_stat=False)

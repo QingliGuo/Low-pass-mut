@@ -55,11 +55,11 @@ rule filter_mutation:
         OUTDIR=$(dirname {output.filtered_vcf})
         
         AVINPUT=$OUTDIR/{wildcards.sample}.octopus.vcf.avinput
-        F1=$OUTDIR/{wildcards.sample}.1.hg19_ALL.sites.2015_08_filtered
-        F2=$OUTDIR/{wildcards.sample}.2.hg19_esp6500siv2_all_filtered
-        F3=$OUTDIR/{wildcards.sample}.3.hg19_exac03nontcga_filtered
-        F4=$OUTDIR/{wildcards.sample}.4.hg19_gnomad211_genome_filtered
-        F5=$OUTDIR/{wildcards.sample}.5.hg19_kaviar_20150923_filtered
+        F1=$OUTDIR/{wildcards.sample}.1.hg38_ALL.sites.2015_08_filtered
+        F2=$OUTDIR/{wildcards.sample}.2.hg38_esp6500siv2_all_filtered
+        F3=$OUTDIR/{wildcards.sample}.3.hg38_exac03nontcga_filtered
+        F4=$OUTDIR/{wildcards.sample}.4.hg38_gnomad211_genome_filtered
+        F5=$OUTDIR/{wildcards.sample}.5.hg38_kaviar_20150923_filtered
 
         merge_chunks() {{
             local final="$1"
@@ -73,31 +73,31 @@ rule filter_mutation:
         {config[convert2anno]} -format vcf4 {input.vcf} -includeinfo > $AVINPUT 2> {log}
 
         # --- Step 1: 1000g ---
-        {config[annovar]} -filter -dbtype 1000g2015aug_all -buildver hg19 \\
+        {config[annovar]} -filter -dbtype 1000g2015aug_all -buildver hg38 \\
             -out $OUTDIR/{wildcards.sample}.1 $AVINPUT {config[annovar_db]} \\
             -maf 0.001 -thread {threads} >> {log} 2>&1
         merge_chunks $F1
 
         # --- Step 2: esp6500 ---
-        {config[annovar]} -filter -dbtype esp6500siv2_all -buildver hg19 \\
+        {config[annovar]} -filter -dbtype esp6500siv2_all -buildver hg38 \\
             -out $OUTDIR/{wildcards.sample}.2 $F1 {config[annovar_db]} \\
             -score_threshold 0.001 -thread {threads} >> {log} 2>&1
         merge_chunks $F2
 
         # --- Step 3: exac03 ---
-        {config[annovar]} -filter -dbtype exac03nontcga -buildver hg19 \\
+        {config[annovar]} -filter -dbtype exac03nontcga -buildver hg38 \\
             -out $OUTDIR/{wildcards.sample}.3 $F2 {config[annovar_db]} \\
             -score_threshold 0.001 -thread {threads} >> {log} 2>&1
         merge_chunks $F3
 
         # --- Step 4: gnomad ---
-        {config[annovar]} -filter -dbtype gnomad211_genome -buildver hg19 \\
+        {config[annovar]} -filter -dbtype gnomad211_genome -buildver hg38 \\
             -out $OUTDIR/{wildcards.sample}.4 $F3 {config[annovar_db]} \\
             -score_threshold 0.005 -thread {threads} >> {log} 2>&1
         merge_chunks $F4
 
         # --- Step 5: kaviar ---
-        {config[annovar]} -filter -dbtype kaviar_20150923 -buildver hg19 \\
+        {config[annovar]} -filter -dbtype kaviar_20150923 -buildver hg38 \\
             -out $OUTDIR/{wildcards.sample}.5 $F4 {config[annovar_db]} \\
             -score_threshold 0.001 -thread {threads} >> {log} 2>&1
         merge_chunks $F5
