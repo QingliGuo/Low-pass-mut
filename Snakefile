@@ -102,8 +102,13 @@ rule filter_mutation:
             -score_threshold 0.001 -thread {threads} >> {log} 2>&1
         merge_chunks $F5
         
-        # --- Final Step: Create VCF ---
-        cut -f 6-16 $F5 > {output.filtered_vcf}
+        # --- Final Step: Create VCF and fix chromosome names for hg38 ---
+        # Convert chromosome names from hg19 (1,2,3,X,Y,MT) to hg38 (chr1,chr2,chr3,chrX,chrY,chrM)
+        cut -f 6-16 $F5 | awk 'BEGIN {{OFS="\\t"}} /^#/ {{print; next}} {{
+            if ($1 == "MT") $1="chrM"
+            else if ($1 !~ /^chr/) $1="chr"$1
+            print
+        }}' > {output.filtered_vcf}
 
         # --- Clean up ---
         rm -f $OUTDIR/{wildcards.sample}.*_dropped $OUTDIR/{wildcards.sample}.*.log $OUTDIR/{wildcards.sample}.*.invalid_input $OUTDIR/{wildcards.sample}.*_filtered $OUTDIR/{wildcards.sample}*avinput

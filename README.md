@@ -14,8 +14,8 @@ Clone or download this git repository and ensure your folder structure is as fol
 ├── config.yaml               # Configuration file for paths and parameters
 ├── submit_snakemake.sh       # SLURM submission script
 ├── data/                     # A directory for input data, including BAM files and the sample list.
-│   ├── sample1.bam           # BAM files aligned to GRCh38/hg38 reference
-│   ├── sample1.bam.bai
+│   ├── sample1.bam           # BAM files aligned to GRCh38/hg38 reference (REQUIRED)
+│   ├── sample1.bam.bai       # IMPORTANT: BAM files must be aligned to hg38, not hg19
 │   ├── sample2.bam
 │   ├── sample2.bam.bai
 │   └── sample_names.txt      # List of sample names, one per line
@@ -75,13 +75,18 @@ genInstall.install('GRCh38', rsync=False, bash=True)
 
 ## Usage
 
-1. **Edit the configuration file**  
+**IMPORTANT NOTES:**
+- Your BAM files **must be aligned to GRCh38/hg38 reference genome**, not hg19/GRCh37
+- The pipeline automatically handles chromosome naming conversion (e.g., `1` → `chr1`, `MT` → `chrM`) for compatibility with GRCh38
+- If your data is currently aligned to hg19, you need to realign to hg38 before using this pipeline
+
+1. **Edit the configuration file**
    Update `config.yaml` to specify correct paths for your system:
    - `samples`: path to sample list file, containing sample names (one per line, without extensions).
-   - `bam_dir`: directory containing your input BAM files.
-   - `ref`: Path to the reference genome FASTA file.
+   - `bam_dir`: directory containing your input BAM files (must be aligned to hg38).
+   - `ref`: Path to the GRCh38/hg38 reference genome FASTA file.
    - `output_dir`: output directory
-   - `annovar_db`: path to ANNOVAR database directory
+   - `annovar_db`: path to ANNOVAR database directory (must contain hg38 databases)
    - Paths to helper scripts
 
 2. **Update job submission script**  
