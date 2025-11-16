@@ -1,6 +1,6 @@
 # Variant Calling & Filtering Pipeline for Low-Pass WGS Data
 
-This Snakemake pipeline performs **variant calling using [Octopus](https://luntergroup.github.io/octopus/)** from BAM files, followed by **multi-step filtering with [ANNOVAR](https://annovar.openbioinformatics.org/en/latest/)** against several population databases, and finally generates mutation matrices for downstream analysis, such as our MSI prediction tool **[MILO](https://github.com/QingliGuo/MILO)**. This pipeline is designed for low-pass DNA sequencing data (GRCh37/hg19) and tested on SLURM-based HPC clusters.
+This Snakemake pipeline performs **variant calling using [Octopus](https://luntergroup.github.io/octopus/)** from BAM files, followed by **multi-step filtering with [ANNOVAR](https://annovar.openbioinformatics.org/en/latest/)** against several population databases, and finally generates mutation matrices for downstream analysis, such as our MSI prediction tool **[MILO](https://github.com/QingliGuo/MILO)**. This pipeline is designed for low-pass DNA sequencing data (GRCh38/hg38) and tested on SLURM-based HPC clusters.
 
 ---
 
@@ -14,8 +14,8 @@ Clone or download this git repository and ensure your folder structure is as fol
 ├── config.yaml               # Configuration file for paths and parameters
 ├── submit_snakemake.sh       # SLURM submission script
 ├── data/                     # A directory for input data, including BAM files and the sample list.
-│   ├── sample1.bam           # Toy bam files (md5sum of ref GRCh37-lite.fa: 89cdf2f85ef8559a3834a82d6bdb1b2d) 
-│   ├── sample1.bam.bai
+│   ├── sample1.bam           # BAM files aligned to GRCh38/hg38 reference (REQUIRED)
+│   ├── sample1.bam.bai       # IMPORTANT: BAM files must be aligned to hg38, not hg19
 │   ├── sample2.bam
 │   ├── sample2.bam.bai
 │   └── sample_names.txt      # List of sample names, one per line
@@ -36,7 +36,7 @@ mamba env create -f envs/snakemake.yaml --channel-priority flexible
 ```
 
 ### 2. ANNOVAR setup
-This pipeline requires the following ANNOVAR databases (GRCh37/hg19):
+This pipeline requires the following ANNOVAR databases (GRCh38/hg38):
 
 - 1000g2015aug
 - esp6500siv2_all
@@ -48,31 +48,45 @@ This pipeline requires the following ANNOVAR databases (GRCh37/hg19):
 1. Download ANNOVAR from [its official website](http://annovar.openbioinformatics.org/en/latest/user-guide/download/)
 2. Use the `annotate_variation.pl` script to download the databases into your `humandb` directory:
 ```bash
-perl annotate_variation.pl -downdb -buildver hg19 -webfrom annovar 1000g2015aug humandb/
-perl annotate_variation.pl -downdb -buildver hg19 -webfrom annovar esp6500siv2_all humandb/
-perl annotate_variation.pl -downdb -buildver hg19 -webfrom annovar exac03nontcga humandb/
-perl annotate_variation.pl -downdb -buildver hg19 -webfrom annovar gnomad211_genome humandb/
-perl annotate_variation.pl -downdb -buildver hg19 -webfrom annovar kaviar_20150923 humandb/
+perl annotate_variation.pl -downdb -buildver hg38 -webfrom annovar 1000g2015aug humandb/
+perl annotate_variation.pl -downdb -buildver hg38 -webfrom annovar esp6500siv2_all humandb/
+perl annotate_variation.pl -downdb -buildver hg38 -webfrom annovar exac03nontcga humandb/
+perl annotate_variation.pl -downdb -buildver hg38 -webfrom annovar gnomad211_genome humandb/
+perl annotate_variation.pl -downdb -buildver hg38 -webfrom annovar kaviar_20150923 humandb/
 ```
 
-### 3. Matrix environment
+### 3. Reference genome setup
+**GRCh38/hg38 Reference Genome:**
+You will need the GRCh38/hg38 reference genome FASTA file for variant calling. Download from:
+- [UCSC hg38](http://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/hg38.fa.gz)
+- [NCBI GRCh38](https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/001/405/GCA_000001405.15_GRCh38/seqs_for_alignment_pipelines.ucsc_ids/)
+- [Ensembl GRCh38](http://ftp.ensembl.org/pub/release-110/fasta/homo_sapiens/dna/)
+
+Make sure to index your reference genome using `samtools faidx` before running the pipeline.
+
+### 4. Matrix environment
 To run the [SigProfilerMatrixGenerator](https://github.com/AlexandrovLab/SigProfilerMatrixGenerator), you need to install the reference genome in Python within the matrix environment.
 
-```bash
+```python
 from SigProfilerMatrixGenerator import install as genInstall
-genInstall.install('GRCh37', rsync=False, bash=True)
+genInstall.install('GRCh38', rsync=False, bash=True)
 ```
 ---
 
 ## Usage
 
-1. **Edit the configuration file**  
+**IMPORTANT NOTES:**
+- Your BAM files **must be aligned to GRCh38/hg38 reference genome**, not hg19/GRCh37
+- The pipeline automatically handles chromosome naming conversion (e.g., `1` → `chr1`, `MT` → `chrM`) for compatibility with GRCh38
+- If your data is currently aligned to hg19, you need to realign to hg38 before using this pipeline
+
+1. **Edit the configuration file**
    Update `config.yaml` to specify correct paths for your system:
    - `samples`: path to sample list file, containing sample names (one per line, without extensions).
-   - `bam_dir`: directory containing your input BAM files.
-   - `ref`: Path to the reference genome FASTA file.
+   - `bam_dir`: directory containing your input BAM files (must be aligned to hg38).
+   - `ref`: Path to the GRCh38/hg38 reference genome FASTA file.
    - `output_dir`: output directory
-   - `annovar_db`: path to ANNOVAR database directory
+   - `annovar_db`: path to ANNOVAR database directory (must contain hg38 databases)
    - Paths to helper scripts
 
 2. **Update job submission script**  

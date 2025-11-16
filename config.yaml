@@ -2,7 +2,7 @@ samples: "/data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut/data/sample_names.
 bam_dir: "/data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut/data"
 output_dir: "/data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut/results"
 
-ref: "/data/scratch/DMP/UCEC/GENEVOD/software/DLP/refdata/human/GRCh37-lite.fa"
+ref: "/path/to/GRCh38/hg38.fa"  # Path to GRCh38/hg38 reference genome
 annovar_db: "/data/rds/DMP/UCEC/GENEVOD/qguo/Reference/genome/annovar/humandb/"
 convert2anno: "/data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut/scripts/convert2annovar.pl"
 annovar: "/data/scratch/DMP/UCEC/GENEVOD/qguo/Projects/lp_mut/scripts/annotate_variation.pl"
